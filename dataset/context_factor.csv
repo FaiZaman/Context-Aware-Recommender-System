@@ -1,0 +1,27 @@
+id, question, dimension, value, positiveexplanation, negativeexplanation
+1,Imagine your are driving in a relaxed mood.,driving style,relaxed driving,\N,\N
+2,Imagine your driving style is very sportive.,driving style,sport driving,\N,\N
+3,Imagine you are driving along a coast line.,landscape,coast line,\N,\N
+4,Imagine you are on a country side.,landscape,country side,\N,\N
+5,Imagine you are driving between mountains or hills.,landscape,mountains/hills,\N,\N
+6,Imagine you are driving in a city.,landscape,urban,\N,\N
+7,Imagine you are feeling very active.,mood,active,\N,\N
+8,Imagine that you are happy.,mood,happy,\N,\N
+9,Imagine that you are lazy now.,mood,lazy,\N,\N
+10,Imagine you feel sad.,mood,sad,\N,\N
+11,Imagine that it is afternoon.,natural phenomena ,afternoon,\N,\N
+12,Imagine that it is day time.,natural phenomena,day time,\N,\N
+13,Imagine that it is morning.,natural phenomena,morning,\N,\N
+14,Imagine that you are driving at night.,natural phenomena,night,\N,\N
+15,Imagine that you are driving in a city street.,road type,city,\N,\N
+16,Imagine that you are driving on a highway.,road type,highway,\N,\N
+17,Imagine that you are driving through serpentine curves. ,road type,serpentine,\N,\N
+18,Imagine that you feel awake.,sleepiness,awake,\N,\N
+19,Imagine that you feel tired and sleepy.,sleepiness,sleepy,\N,\N
+20,Imagine that the road is free and there are almost no other cars.,traffic conditions,free road,\N,\N
+21,Imagine that there are many cars on the road.,traffic conditions,lots of cars,\N,\N
+22,Imagine that you ended up in a traffic jam.,traffic conditions,traffic jam,\N,\N
+23,Imagine that it is cloudy outside.,weather,cloudy,\N,\N
+24,Imagine that it is raining.,weather ,rainy,\N,\N
+25,Imagine that it is snowing.,weather,snowing,\N,\N
+26,Imagine that the sun is shining.,weather,sunny,\N,\N
