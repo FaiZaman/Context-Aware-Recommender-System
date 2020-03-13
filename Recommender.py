@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import itertools
 
 # reading in data
 main_dataframe = pd.read_csv("dataset/in_car_music.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
@@ -23,19 +24,21 @@ def get_user_ratings(user_id):
 # returns the items with a rating by both users for similarity calculation
 def get_same_rated_items(user_ratings_1, user_ratings_2):
 
-    pass
+    same_rated_items = []
+
+    return same_rated_items
 
 
 # compares all users to each other
 def compute_similarities():
 
-    for user_index in range(0, len(user_id_list)):
+    for user_i, user_j in itertools.combinations(user_id_list, 2):
         
-        user_1 = user_id_list[user_index]
-        user_ratings_1 = get_user_ratings(user_1)
+        print(user_i, user_j)
+        user_ratings_i = get_user_ratings(user_i)
+        user_ratings_j = get_user_ratings(user_j)
 
-        for i in range(1, len(user_id_list)):
-
-            user_i = user_id_list[user_index + i]
-            user_ratings_i = get_user_ratings[user_i]
-
+        same_rated_items = get_same_rated_items(user_ratings_i, user_ratings_j)
+        print(user_ratings_i)
+        print(user_ratings_j)   # the same? todo
+        break;
