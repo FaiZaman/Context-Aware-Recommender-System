@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from Recommender import get_user_ratings, get_same_rated_items, compute_similarities
 
 # reading in data
 main_dataframe = pd.read_csv("dataset/in_car_music.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
@@ -39,7 +40,6 @@ def display_recommendations(user_id):
     print("Welcome, User " + str(user_id) + "! Your recommendations are:\n")
     print(main_dataframe.head(10))
 
-
 is_valid_id = False
 
 while not is_valid_id:
@@ -51,3 +51,4 @@ while not is_valid_id:
         print("The user " + str(user_id) + " does not exist. Please try again:")
 
 display_recommendations(user_id)
+get_user_ratings(user_id)

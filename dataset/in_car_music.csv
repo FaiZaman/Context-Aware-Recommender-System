@@ -1,4 +1,4 @@
-UserID,ItemID, Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,sleepiness,trafficConditions,weather
+UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,sleepiness,trafficConditions,weather
 1001,715,2,NA,NA,NA,NA,NA,NA,NA,sunny
 1001,267,4,NA,NA,NA,NA,NA,NA,NA,sunny
 1001,294,2,NA,NA,NA,NA,NA,NA,NA,sunny
