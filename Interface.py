@@ -10,12 +10,11 @@ music_category_dataframe = pd.read_csv("dataset/music_category.csv", index_col=F
 user_column = main_dataframe['UserID'].tolist()
 user_id_list = list(dict.fromkeys(user_column))
 
+print("Welcome to the Music Recommender System! Please enter your user ID:")
 
 def sign_in():
 
     # takes user ID as input explicitly and logs them in
-    print("Welcome to the Music Recommender System! Please enter your user ID:")
-
     while True:
         try:
             user_id = int(input())
@@ -34,6 +33,21 @@ def validate_user(user_id):
     return False
 
 
-user_id = sign_in()
-is_valid_id = validate_user(user_id)
-print(is_valid_id)
+def display_recommendations(user_id):
+
+    # display specificed user's personalised recommendations
+    print("Welcome, User " + str(user_id) + "! Your recommendations are:\n")
+    print(main_dataframe.head(10))
+
+
+is_valid_id = False
+
+while not is_valid_id:
+
+    user_id = sign_in()
+    is_valid_id = validate_user(user_id)
+
+    if not is_valid_id:
+        print("The user " + str(user_id) + " does not exist. Please try again:")
+
+display_recommendations(user_id)
