@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import itertools
+from scipy import spatial
 from Preprocessor import fetch_data
 
 main_dataframe, user_id_list = fetch_data()
@@ -25,6 +26,14 @@ def get_same_rated_items(user_ratings_i, user_ratings_j):
     return same_rated_items
 
 
+# computes cosine similarity between two datasets
+def compute_cosine_similarity(dataset_i, dataset_j):
+
+    cosine = spatial.distance.cosine(dataset_i, dataset_j)
+    cosine_similarity = 1 - cosine
+    return cosine_similarity
+
+
 # compares all users to each other
 def compute_similarities():
 
@@ -34,6 +43,10 @@ def compute_similarities():
         user_ratings_j = get_user_ratings(user_j)
 
         same_rated_items = get_same_rated_items(user_ratings_i, user_ratings_j)
+
+        # only compute for users with items in common
+        if same_rated_items == []:
+            continue    
 
         user_i_item_vector = []
         user_j_item_vector = []
@@ -49,5 +62,4 @@ def compute_similarities():
             user_i_item_vector.append(rating_i)
             user_j_item_vector.append(rating_j)
 
-        print(user_i_item_vector, user_j_item_vector)
-        break;
+        cosine_similarity = compute_cosine_similarity(user_i_item_vector, user_j_item_vector)
