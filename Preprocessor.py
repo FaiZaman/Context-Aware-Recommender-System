@@ -5,18 +5,21 @@ import numpy as np
 
 # reading in data
 main_dataframe = pd.read_csv("dataset/in_car_music.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
-#song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
+song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
 #music_category_dataframe = pd.read_csv("dataset/music_category.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
 
 # get user IDs as list
 user_column = main_dataframe['UserID'].tolist()
 user_id_list = list(dict.fromkeys(user_column))
 
+# get item IDs as list
+item_id_list = song_dataframe['id'].tolist()
+
 
 def fetch_data():
 
     processed_main_dataframe = preprocess()
-    return processed_main_dataframe, user_id_list
+    return processed_main_dataframe, user_id_list, item_id_list
 
 
 # returns the vector of a all specific user's ratings 
@@ -42,10 +45,10 @@ def preprocess():
         unique_rows = user_ratings.drop_duplicates('ItemID', keep=False)
         duplicate_rows = user_ratings[user_ratings.duplicated(['ItemID'])]
     
-        item_column = duplicate_rows['ItemID'].tolist()
-        item_id_list = list(dict.fromkeys(item_column))
+        user_item_column = duplicate_rows['ItemID'].tolist()
+        user_item_id_list = list(dict.fromkeys(user_item_column))
 
-        for item_id in item_id_list:
+        for item_id in user_item_id_list:
 
             duplicate_items = duplicate_rows[duplicate_rows['ItemID'] == item_id]
             

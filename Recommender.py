@@ -1,9 +1,10 @@
 import pandas as pd
 import numpy as np
 from scipy import spatial
+from collections import Counter
 from Preprocessor import fetch_data
 
-main_dataframe, user_id_list = fetch_data()
+main_dataframe, user_id_list, item_id_list = fetch_data()
 
 
 # returns the vector of a all specific user's ratings 
@@ -13,6 +14,18 @@ def get_user_ratings(user_id):
     user_ratings = user_dataframe[['ItemID', 'Rating', 'mood']]
 
     return user_ratings
+
+
+# returns R items not rated by the user
+def get_unrated_items(user_id, R):
+
+    user_ratings = get_user_ratings(user_id)
+    user_item_list = user_ratings['ItemID'].tolist()
+
+    # check item list against user ratings to find unrated items by user
+    unrated_items = [item for item in item_id_list if str(item) not in user_item_list]
+    
+    return unrated_items
 
 
 # returns the items with a rating by both users for similarity calculation
@@ -76,7 +89,18 @@ def compute_similarities(user_id):
 # gets the N most similar users where N = neighbourhood size
 def get_user_neighbourhood(similarity_dict, N):
 
-    # sort similarity list
-    # choose first N entries
-    # return N
-    print(similarity_dict)
+    # choose N most similar entries and return them
+    c = Counter(similarity_dict)
+    neighbourhood = c.most_common(N)
+
+    return neighbourhood
+
+
+# calculate r recommendations for unrated items for a user
+def compute_recommendations(user_id, neighbourhood, R):
+
+    unrated_items = get_unrated_items(user_id, R)
+
+    for item_id in unrated_items:
+
+        break;
