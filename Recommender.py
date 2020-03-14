@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import itertools
 from scipy import spatial
 from Preprocessor import fetch_data
 
@@ -35,25 +34,31 @@ def compute_cosine_similarity(dataset_i, dataset_j):
 
 
 # compares all users to each other
-def compute_similarities():
+def compute_similarities(user_id):
 
-    for user_i, user_j in itertools.combinations(user_id_list, 2):
+    similarity_dict = {}
+    user_ratings = get_user_ratings(user_id)
+
+    # remove current user so not compared against itself
+    filtered_user_id_list = user_id_list.copy()
+    filtered_user_id_list.remove(user_id)
+
+    for user_j in filtered_user_id_list:
         
-        user_ratings_i = get_user_ratings(user_i)
         user_ratings_j = get_user_ratings(user_j)
-
-        same_rated_items = get_same_rated_items(user_ratings_i, user_ratings_j)
+        same_rated_items = get_same_rated_items(user_ratings, user_ratings_j)
 
         # only compute for users with items in common
         if same_rated_items == []:
             continue    
 
+        # datasets for computing cosine similarity
         user_i_item_vector = []
         user_j_item_vector = []
 
         for item_id in same_rated_items:
 
-            user_i_item_rating = user_ratings_i[user_ratings_i['ItemID'] == item_id]
+            user_i_item_rating = user_ratings[user_ratings['ItemID'] == item_id]
             user_j_item_rating = user_ratings_j[user_ratings_j['ItemID'] == item_id]
 
             rating_i = user_i_item_rating['Rating'].iloc[0]
@@ -63,3 +68,15 @@ def compute_similarities():
             user_j_item_vector.append(rating_j)
 
         cosine_similarity = compute_cosine_similarity(user_i_item_vector, user_j_item_vector)
+        similarity_dict[user_j] = cosine_similarity
+    
+    return similarity_dict
+
+
+# gets the N most similar users where N = neighbourhood size
+def get_user_neighbourhood(similarity_dict, N):
+
+    # sort similarity list
+    # choose first N entries
+    # return N
+    print(similarity_dict)

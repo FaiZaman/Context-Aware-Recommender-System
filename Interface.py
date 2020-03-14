@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
 from Preprocessor import fetch_data
-from Recommender import get_same_rated_items, compute_similarities, get_user_ratings
+from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
+                        get_user_neighbourhood
 
+N = 17  # neighbourhood size
 main_dataframe, user_id_list = fetch_data()
 print("Welcome to the Music Recommender System! Please enter your user ID:")
 
@@ -44,4 +46,5 @@ while not is_valid_id:
         print("The user " + str(user_id) + " does not exist. Please try again:")
 
 display_recommendations(user_id)
-compute_similarities()
+similarity_dict = compute_similarities(user_id)
+get_user_neighbourhood(similarity_dict, N)
