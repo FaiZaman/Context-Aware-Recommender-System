@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-from Preprocessor import fetch_data, preprocess
-from Recommender import get_user_ratings, get_same_rated_items, compute_similarities
+from Preprocessor import fetch_data, get_user_ratings
+from Recommender import get_same_rated_items, compute_similarities
 
 main_dataframe, user_id_list = fetch_data()
 print("Welcome to the Music Recommender System! Please enter your user ID:")
