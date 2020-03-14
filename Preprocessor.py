@@ -12,16 +12,18 @@ main_dataframe = pd.read_csv("dataset/in_car_music.csv", index_col=False, delimi
 user_column = main_dataframe['UserID'].tolist()
 user_id_list = list(dict.fromkeys(user_column))
 
+
 def fetch_data():
 
-    return main_dataframe, user_id_list
+    processed_main_dataframe = preprocess()
+    return processed_main_dataframe, user_id_list
 
 
 # returns the vector of a all specific user's ratings 
-def get_user_ratings(user_id):
+def get_user_ratings_preprocessing(user_id):
 
-    user_dataframe = main_dataframe[main_dataframe['UserID'] == 1001]   # change to userID
-    user_ratings = user_dataframe[['ItemID', 'Rating', 'mood']]
+    user_dataframe = main_dataframe[main_dataframe['UserID'] == user_id]
+    user_ratings = user_dataframe[['UserID', 'ItemID', 'Rating', 'mood']]
 
     return user_ratings
 
@@ -33,36 +35,39 @@ def preprocess():
     processed_main_dataframe = pd.DataFrame(columns=['UserID', 'ItemID', 'Rating', 'mood'])
 
     # for each user's each item ratings, check if they rated that item multiple times
-    for user_id in range(0, len(user_id_list)):
+    for user_id in user_id_list:
 
-        user_ratings = get_user_ratings(user_id)
+        user_ratings = get_user_ratings_preprocessing(user_id)
+
+        unique_rows = user_ratings.drop_duplicates('ItemID', keep=False)
         duplicate_rows = user_ratings[user_ratings.duplicated(['ItemID'])]
-        
-        duplicate_items = duplicate_rows[duplicate_rows['ItemID'] == 674]
-        mood_list = duplicate_items['mood']
-        mood = mood_list.iloc[0]
+    
+        item_column = duplicate_rows['ItemID'].tolist()
+        item_id_list = list(dict.fromkeys(item_column))
 
-        # choosing the first mood we see
-        for mood_i in mood_list:
-            if type(mood_i) != float:
-                mood = mood_i
-                break;
+        for item_id in item_id_list:
 
-        duplicate_indices = duplicate_items.index.values
-        replace_index = duplicate_indices[0]
-        
-        average_rating = duplicate_items['Rating'].mean()
+            duplicate_items = duplicate_rows[duplicate_rows['ItemID'] == item_id]
+            
+            mood_list = duplicate_items['mood']
+            mood = mood_list.iloc[0]
 
-        user_ratings = user_ratings.drop(user_ratings.index[duplicate_indices])
+            # choosing the first mood we see
+            for mood_i in mood_list:
+                if type(mood_i) != float:
+                    mood = mood_i
+                    break;
 
-        processed_item_row = {
-            'UserID': str(1001),
-            'ItemID': str(674),
-            'Rating': average_rating,
-            'mood': mood
-        }
-        processed_main_dataframe = processed_main_dataframe.append(processed_item_row, ignore_index=True)
-        print(processed_main_dataframe)
-        break;
+            average_rating = duplicate_items['Rating'].mean()
 
-preprocess()
+            processed_item_row = {
+                'UserID': str(user_id),
+                'ItemID': str(item_id),
+                'Rating': average_rating,
+                'mood': mood
+            }
+
+            processed_main_dataframe = processed_main_dataframe.append(unique_rows)
+            processed_main_dataframe = processed_main_dataframe.append(processed_item_row, ignore_index=True)
+    
+    return processed_main_dataframe
