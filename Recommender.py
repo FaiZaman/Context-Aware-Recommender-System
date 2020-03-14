@@ -9,16 +9,18 @@ main_dataframe, user_id_list = fetch_data()
 # returns the vector of a all specific user's ratings 
 def get_user_ratings(user_id):
 
-    user_dataframe = main_dataframe[main_dataframe['UserID'] == user_id]
+    user_dataframe = main_dataframe[main_dataframe['UserID'] == str(user_id)]
     user_ratings = user_dataframe[['ItemID', 'Rating', 'mood']]
 
     return user_ratings
 
 
 # returns the items with a rating by both users for similarity calculation
-def get_same_rated_items(user_ratings_1, user_ratings_2):
+def get_same_rated_items(user_ratings_i, user_ratings_j):
 
-    same_rated_items = []
+    item_list_i = user_ratings_i['ItemID'].tolist()
+    item_list_j = user_ratings_j['ItemID'].tolist()
+    same_rated_items = [item for item in item_list_i if item in item_list_j]
 
     return same_rated_items
 
@@ -28,11 +30,24 @@ def compute_similarities():
 
     for user_i, user_j in itertools.combinations(user_id_list, 2):
         
-        #print(user_i, user_j)
         user_ratings_i = get_user_ratings(user_i)
         user_ratings_j = get_user_ratings(user_j)
 
         same_rated_items = get_same_rated_items(user_ratings_i, user_ratings_j)
-        #print(user_ratings_i)
-        #print(user_ratings_j)   # the same? todo
+
+        user_i_item_vector = []
+        user_j_item_vector = []
+
+        for item_id in same_rated_items:
+
+            user_i_item_rating = user_ratings_i[user_ratings_i['ItemID'] == item_id]
+            user_j_item_rating = user_ratings_j[user_ratings_j['ItemID'] == item_id]
+
+            rating_i = user_i_item_rating['Rating'].iloc[0]
+            rating_j = user_j_item_rating['Rating'].iloc[0]
+
+            user_i_item_vector.append(rating_i)
+            user_j_item_vector.append(rating_j)
+
+        print(user_i_item_vector, user_j_item_vector)
         break;
