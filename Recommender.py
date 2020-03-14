@@ -16,15 +16,24 @@ def get_user_ratings(user_id):
     return user_ratings
 
 
+# returns the rating user u gave to item i
+def get_item_rating(user_id, item_id):
+
+    user_ratings = get_user_ratings(user_id)
+    item_rating = user_ratings[user_ratings['ItemID'] == str(item_id)]
+
+    return item_rating
+
+
 # returns R items not rated by the user
-def get_unrated_items(user_id, R):
+def get_unrated_items(user_id):
 
     user_ratings = get_user_ratings(user_id)
     user_item_list = user_ratings['ItemID'].tolist()
 
     # check item list against user ratings to find unrated items by user
     unrated_items = [item for item in item_id_list if str(item) not in user_item_list]
-    
+
     return unrated_items
 
 
@@ -99,8 +108,22 @@ def get_user_neighbourhood(similarity_dict, N):
 # calculate r recommendations for unrated items for a user
 def compute_recommendations(user_id, neighbourhood, R):
 
-    unrated_items = get_unrated_items(user_id, R)
+    unrated_items = get_unrated_items(user_id)
 
     for item_id in unrated_items:
 
-        break;
+        # apply summation formula by all users
+        for user in neighbourhood:
+
+            neighbour_id = user[0]
+            similarity = user[1]
+
+            # get rating for same item for current neighbour
+            neighbour_item_rating = get_item_rating(neighbour_id, item_id)
+
+            if not neighbour_item_rating.empty:     #  if neighbour did rate item
+                
+                neighbour_item_rating = neighbour_item_rating['Rating'].iloc[0]
+                print(neighbour_item_rating)
+
+    break;
