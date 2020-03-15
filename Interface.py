@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from Preprocessor import fetch_data
 from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
-                        get_user_neighbourhood, compute_recommendations
+                        get_user_neighbourhood, compute_recommendations, get_r_best_recommendations
 
 N = 17  # neighbourhood size
 R = 10  # number of recommendations to output
@@ -47,7 +47,21 @@ while not is_valid_id:
     if not is_valid_id:
         print("The user " + str(user_id) + " does not exist. Please try again:")
 
-display_recommendations(user_id)
-similarity_dict = compute_similarities(user_id)
-neighbourhood = get_user_neighbourhood(similarity_dict, N)
-compute_recommendations(user_id, neighbourhood, R)
+
+def main():
+
+     # get cosine similarities between users
+    similarity_dict = compute_similarities(user_id)
+
+    # get user's neighbourhood of size N
+    neighbourhood = get_user_neighbourhood(similarity_dict, N)
+
+    # get all predicted ratings for this user's unrated items
+    predicted_ratings = compute_recommendations(user_id, neighbourhood)
+
+    # get the r highest predicted ratings to display
+    get_r_best_recommendations(predicted_ratings, R)
+
+    #display_recommendations(user_id)
+
+main()

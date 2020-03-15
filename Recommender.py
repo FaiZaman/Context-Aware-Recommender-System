@@ -106,11 +106,15 @@ def get_user_neighbourhood(similarity_dict, N):
 
 
 # calculate r recommendations for unrated items for a user
-def compute_recommendations(user_id, neighbourhood, R):
+def compute_recommendations(user_id, neighbourhood):
 
     unrated_items = get_unrated_items(user_id)
+    predicted_ratings_dict = {}
 
     for item_id in unrated_items:
+
+        similarity_rating_sum = 0
+        k = 0   # normalisation factor
 
         # apply summation formula by all users
         for user in neighbourhood:
@@ -124,6 +128,24 @@ def compute_recommendations(user_id, neighbourhood, R):
             if not neighbour_item_rating.empty:     #  if neighbour did rate item
                 
                 neighbour_item_rating = neighbour_item_rating['Rating'].iloc[0]
-                print(neighbour_item_rating)
 
-    break;
+                similarity_rating = similarity * neighbour_item_rating
+                similarity_rating_sum += similarity_rating
+                k += abs(similarity)
+
+        if k != 0:
+            k = 1 / k
+            predicted_rating = similarity_rating_sum * k
+            predicted_ratings_dict[item_id] = predicted_rating
+        else:
+            # what rating to predict if none of neighbours rated this item?
+            continue
+    
+    return predicted_ratings_dict
+
+
+# returns the r items with highest predicted rating
+def get_r_best_recommendations(predicted_ratings, R):
+
+    print("end")
+    pass
