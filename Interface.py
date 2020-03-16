@@ -31,11 +31,11 @@ def validate_user(user_id):
     return False
 
 
-def display_recommendations(user_id):
+def display_recommendations(user_id, predicted_ratings):
 
     # display specificed user's personalised recommendations
     print("Welcome, User " + str(user_id) + "! Your recommendations are:\n")
-    print(main_dataframe.head(10))
+    print(predicted_ratings)
 
 
 is_valid_id = False
@@ -63,6 +63,6 @@ def main():
     # get the r highest predicted ratings to display
     r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
 
-    #display_recommendations(user_id)
+    display_recommendations(user_id, r_predicted_ratings)
 
 main()

@@ -10,7 +10,7 @@ main_dataframe, user_id_list, item_id_list = fetch_data()
 # returns the vector of a all specific user's ratings 
 def get_user_ratings(user_id):
 
-    user_dataframe = main_dataframe[main_dataframe['UserID'] == str(user_id)]
+    user_dataframe = main_dataframe[main_dataframe['UserID'] == user_id]
     user_ratings = user_dataframe[['ItemID', 'Rating', 'landscape']]
 
     return user_ratings
@@ -20,7 +20,7 @@ def get_user_ratings(user_id):
 def get_item_rating(user_id, item_id):
 
     user_ratings = get_user_ratings(user_id)
-    item_rating = user_ratings[user_ratings['ItemID'] == str(item_id)]
+    item_rating = user_ratings[user_ratings['ItemID'] == item_id]
 
     return item_rating
 
@@ -32,7 +32,7 @@ def get_unrated_items(user_id):
     user_item_list = user_ratings['ItemID'].tolist()
 
     # check item list against user ratings to find unrated items by user
-    unrated_items = [item for item in item_id_list if str(item) not in user_item_list]
+    unrated_items = [item for item in item_id_list if item not in user_item_list]
 
     return unrated_items
 
@@ -60,7 +60,6 @@ def compute_similarities(user_id):
 
     similarity_dict = {}
     user_ratings = get_user_ratings(user_id)
-    print(user_ratings)
     count = 0
 
     # remove current user so not compared against itself
@@ -75,9 +74,7 @@ def compute_similarities(user_id):
         # only compute for users with items in common
         if same_rated_items == []:
             count += 1
-            continue    
-        else:
-            print(count)
+            continue
 
         # datasets for computing cosine similarity
         user_i_item_vector = []
