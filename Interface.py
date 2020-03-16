@@ -37,6 +37,7 @@ def display_recommendations(user_id):
     print("Welcome, User " + str(user_id) + "! Your recommendations are:\n")
     print(main_dataframe.head(10))
 
+
 is_valid_id = False
 
 while not is_valid_id:

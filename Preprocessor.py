@@ -35,9 +35,9 @@ def get_item_id_list(dataframe):
 
 
 # returns the vector of a all specific user's ratings 
-def get_user_ratings_preprocessing(user_id):
+def get_user_ratings_preprocessing(user_id, filtered_main_dataframe):
 
-    user_dataframe = main_dataframe[main_dataframe['UserID'] == user_id]
+    user_dataframe = filtered_main_dataframe[filtered_main_dataframe['UserID'] == user_id]
     user_ratings = user_dataframe[['UserID', 'ItemID', 'Rating', 'landscape']]
 
     return user_ratings
@@ -55,39 +55,36 @@ def preprocess():
     # for each user's each item ratings, check if they rated that item multiple times
     for user_id in user_id_list:
 
-        user_ratings = get_user_ratings_preprocessing(user_id)
+        user_ratings = get_user_ratings_preprocessing(user_id, filtered_main_dataframe)
 
         unique_rows = user_ratings.drop_duplicates('ItemID', keep=False)
         duplicate_rows = user_ratings[user_ratings.duplicated(['ItemID'])]
-    
+        processed_main_dataframe = processed_main_dataframe.append(unique_rows)
+
         user_item_column = duplicate_rows['ItemID'].tolist()
         user_item_id_list = list(dict.fromkeys(user_item_column))
 
         for item_id in user_item_id_list:
 
+            # TOFIX - items not giving duplicates properly
             duplicate_items = duplicate_rows[duplicate_rows['ItemID'] == item_id]
             
+            rating_list = duplicate_items['Rating']
             landscape_list = duplicate_items['landscape']
+
+            # take first rating and landscape we see
+            rating = rating_list.iloc[0]
             landscape = landscape_list.iloc[0]
-
-            # choosing the first landscape we see
-            for landscape_i in landscape_list:
-                if type(landscape_i) != float:
-                    landscape = landscape_i
-                    break;
-
-            average_rating = duplicate_items['Rating'].mean()
 
             processed_item_row = {
                 'UserID': str(user_id),
                 'ItemID': str(item_id),
-                'Rating': average_rating,
+                'Rating': rating,
                 'landscape': landscape
             }
-
-            processed_main_dataframe = processed_main_dataframe.append(unique_rows)
+            
             processed_main_dataframe = processed_main_dataframe.append(processed_item_row, ignore_index=True)
-    
+
     return processed_main_dataframe, user_id_list
 
 

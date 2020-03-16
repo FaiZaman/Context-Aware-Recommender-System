@@ -55,11 +55,13 @@ def compute_cosine_similarity(dataset_i, dataset_j):
     return cosine_similarity
 
 
-# compares all users to each other
+# compares this user against all others
 def compute_similarities(user_id):
 
     similarity_dict = {}
     user_ratings = get_user_ratings(user_id)
+    print(user_ratings)
+    count = 0
 
     # remove current user so not compared against itself
     filtered_user_id_list = user_id_list.copy()
@@ -72,7 +74,10 @@ def compute_similarities(user_id):
 
         # only compute for users with items in common
         if same_rated_items == []:
+            count += 1
             continue    
+        else:
+            print(count)
 
         # datasets for computing cosine similarity
         user_i_item_vector = []
@@ -107,6 +112,8 @@ def get_user_neighbourhood(similarity_dict, N):
 
 # calculate r recommendations for unrated items for a user
 def compute_recommendations(user_id, neighbourhood):
+
+    # TODO - same item in same context
 
     unrated_items = get_unrated_items(user_id)
     predicted_ratings_dict = {}
