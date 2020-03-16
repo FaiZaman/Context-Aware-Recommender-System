@@ -60,7 +60,6 @@ def compute_similarities(user_id):
 
     similarity_dict = {}
     user_ratings = get_user_ratings(user_id)
-    count = 0
 
     # remove current user so not compared against itself
     filtered_user_id_list = user_id_list.copy()
@@ -73,7 +72,6 @@ def compute_similarities(user_id):
 
         # only compute for users with items in common
         if same_rated_items == []:
-            count += 1
             continue
 
         # datasets for computing cosine similarity
@@ -108,17 +106,19 @@ def get_user_neighbourhood(similarity_dict, N):
 
 
 # calculate r recommendations for unrated items for a user
-def compute_recommendations(user_id, neighbourhood):
+def compute_recommendations(user_id, neighbourhood, threshold):
 
-    # TODO - same item in same context
+    # TODO - check whether we need the specific context - currently done without
 
     unrated_items = get_unrated_items(user_id)
     predicted_ratings_dict = {}
+    N = len(neighbourhood)
 
     for item_id in unrated_items:
 
         similarity_rating_sum = 0
         k = 0   # normalisation factor
+        num_neighbours_rated = 0
 
         # apply summation formula by all users
         for user in neighbourhood:
@@ -131,6 +131,7 @@ def compute_recommendations(user_id, neighbourhood):
 
             if not neighbour_item_rating.empty:     #  if neighbour did rate item
                 
+                num_neighbours_rated += 1
                 neighbour_item_rating = neighbour_item_rating['Rating'].iloc[0]
 
                 similarity_rating = similarity * neighbour_item_rating
@@ -144,6 +145,8 @@ def compute_recommendations(user_id, neighbourhood):
             if predicted_rating > 5:    # in case rating goes to 5.00001
                 predicted_rating = 5.0
 
+            # postfiltering and assignment
+            predicted_rating = filter_pof(predicted_rating, num_neighbours_rated, N, threshold)
             predicted_ratings_dict[item_id] = predicted_rating
 
         else:
@@ -161,3 +164,13 @@ def get_r_best_recommendations(predicted_ratings_dict, R):
     r_predicted_ratings = c.most_common(R)
 
     return r_predicted_ratings
+
+
+# uses postfiltering to incorporate contexts into the recommendations
+def filter_pof(predicted_rating, num_neighbours_rated, N, threshold):
+
+    contextual_probability = num_neighbours_rated / N
+
+    if contextual_probability > threshold:
+        return predicted_rating
+    return 0

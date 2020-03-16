@@ -6,6 +6,7 @@ from Recommender import get_same_rated_items, compute_similarities, get_user_rat
 
 N = 17  # neighbourhood size
 R = 10  # number of recommendations to output
+threshold = 0.1     # threshold for Filter PoF
 
 main_dataframe, user_id_list, item_id_list = fetch_data()
 print("Welcome to the Music Recommender System! Please enter your user ID:")
@@ -58,7 +59,7 @@ def main():
     neighbourhood = get_user_neighbourhood(similarity_dict, N)
 
     # get all predicted ratings for this user's unrated items
-    predicted_ratings_dict = compute_recommendations(user_id, neighbourhood)
+    predicted_ratings_dict = compute_recommendations(user_id, neighbourhood, threshold)
 
     # get the r highest predicted ratings to display
     r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
