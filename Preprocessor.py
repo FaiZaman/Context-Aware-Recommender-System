@@ -6,7 +6,6 @@ import numpy as np
 # reading in data
 main_dataframe = pd.read_csv("dataset/in_car_music.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
 song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
-#music_category_dataframe = pd.read_csv("dataset/music_category.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
 
 
 def fetch_data():
@@ -29,7 +28,7 @@ def get_user_id_list(dataframe):
 def get_item_id_list(dataframe):
 
     # get item IDs as list
-    item_id_list = song_dataframe['id'].tolist()
+    item_id_list = song_dataframe['ItemID'].tolist()
 
     return item_id_list
 
