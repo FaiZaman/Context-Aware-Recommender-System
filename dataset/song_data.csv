@@ -1,4 +1,4 @@
-id, album, artist, title, mp3url, description, imageurl, category_id
+ItemID,album,artist,title,mp3url,description,imageurl,category_id
 248,\N,B.B.King,The Thrill is Gone,Music/Blues/B.B.King - The Thrill is Gone.mp3,\N,img/music.jpg,1
 250,\N,Mamie Smith,Crazy Blues,Music/Blues/Mamie Smith - Crazy Blues.mp3,\N,img/music.jpg,1
 251,\N,Robert Johnson,Hellhound On My Trail,Music/Blues/Robert Johnson - Hellhound On My Trail.mp3,\N,img/music.jpg,1
