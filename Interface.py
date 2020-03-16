@@ -57,10 +57,10 @@ def main():
     neighbourhood = get_user_neighbourhood(similarity_dict, N)
 
     # get all predicted ratings for this user's unrated items
-    predicted_ratings = compute_recommendations(user_id, neighbourhood)
+    predicted_ratings_dict = compute_recommendations(user_id, neighbourhood)
 
     # get the r highest predicted ratings to display
-    get_r_best_recommendations(predicted_ratings, R)
+    r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
 
     #display_recommendations(user_id)
 

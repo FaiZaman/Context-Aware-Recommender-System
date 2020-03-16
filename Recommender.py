@@ -11,7 +11,7 @@ main_dataframe, user_id_list, item_id_list = fetch_data()
 def get_user_ratings(user_id):
 
     user_dataframe = main_dataframe[main_dataframe['UserID'] == str(user_id)]
-    user_ratings = user_dataframe[['ItemID', 'Rating', 'mood']]
+    user_ratings = user_dataframe[['ItemID', 'Rating', 'landscape']]
 
     return user_ratings
 
@@ -98,7 +98,7 @@ def compute_similarities(user_id):
 # gets the N most similar users where N = neighbourhood size
 def get_user_neighbourhood(similarity_dict, N):
 
-    # choose N most similar entries and return them
+    # choose the N entries with highest similarity and return them
     c = Counter(similarity_dict)
     neighbourhood = c.most_common(N)
 
@@ -136,7 +136,12 @@ def compute_recommendations(user_id, neighbourhood):
         if k != 0:
             k = 1 / k
             predicted_rating = similarity_rating_sum * k
+            
+            if predicted_rating > 5:    # in case rating goes to 5.00001
+                predicted_rating = 5.0
+
             predicted_ratings_dict[item_id] = predicted_rating
+
         else:
             # what rating to predict if none of neighbours rated this item?
             continue
@@ -145,7 +150,10 @@ def compute_recommendations(user_id, neighbourhood):
 
 
 # returns the r items with highest predicted rating
-def get_r_best_recommendations(predicted_ratings, R):
+def get_r_best_recommendations(predicted_ratings_dict, R):
 
-    print("end")
-    pass
+    # choose R most similar entries and return them
+    c = Counter(predicted_ratings_dict)
+    r_predicted_ratings = c.most_common(R)
+
+    return r_predicted_ratings
