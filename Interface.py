@@ -35,25 +35,32 @@ def sign_in():
 
 
 # displays menu when user signs in
-def main_menu(user_id):
+def main_menu(user_id, R):
 
     print("Press G to generate your recommendations.")
+    print("Press S to configure the settings.")
     print("Press X to sign out of your account.")
     print("Press Q to quit the Music Recommender System.")
     
     while True:
         command = str(input())
         command = command.upper()
-        if command == 'G' or command == 'X' or command == 'Q':
+        if command == 'G' or command == 'S' or command == 'X' or command == 'Q':
             break;
         else:
             print("Invalid command. Please try again.")
     
     if command == 'G':
-        get_recommendations(user_id)
-        main_menu(user_id)
+        get_recommendations(user_id, R)
+        main_menu(user_id, R)
+
+    elif command == 'S':
+        R = configure_settings()
+        main_menu(user_id, R)
+
     elif command == 'X':
         main()
+
     else:
         sys.exit()
 
@@ -100,10 +107,10 @@ def display_recommendations(user_id, predicted_ratings):
     recommendations = recommendations.sort_values(by=['Predicted Rating'], ascending=False)
     recommendations = recommendations.reset_index(drop=True)
 
-    print(recommendations)
+    print(recommendations, "\n")
 
 
-def get_recommendations(user_id):
+def get_recommendations(user_id, R):
 
      # get cosine similarities between users
     similarity_dict = compute_similarities(user_id)
@@ -120,6 +127,21 @@ def get_recommendations(user_id):
     display_recommendations(user_id, r_predicted_ratings)
 
 
+# allows user to change settings based on their own preferences or due to device size/disability etc
+def configure_settings():
+
+    print("Please enter the number of recommendations you wish to get (default 10)")
+
+    while True:
+        try:
+            R = int(input())
+            break;
+        except ValueError:
+            print("Invalid format. Please enter an integer and try again.")
+
+    return R
+
+
 # basic process to call to start program
 def main():
 
@@ -127,6 +149,6 @@ def main():
     print("===================== Music Recommender System =====================")
     user_id = sign_in()
     print("Welcome, User " + str(user_id) + "!\n")
-    main_menu(user_id)
+    main_menu(user_id, R)
 
 main()

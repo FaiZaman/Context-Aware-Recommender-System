@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import math
 from scipy import spatial
 from collections import Counter
 from Preprocessor import fetch_data
@@ -156,14 +157,29 @@ def compute_recommendations(user_id, neighbourhood, threshold):
     return predicted_ratings_dict
 
 
+# remove recommendations with rating of 0 or NaN
+def filter_recommendations(r_predicted_ratings):
+
+    print(r_predicted_ratings)
+    for (item_id, predicted_rating) in r_predicted_ratings:
+
+        if predicted_rating < 2 or math.isnan(predicted_rating):
+            print(item_id, predicted_rating, type(predicted_rating))
+            r_predicted_ratings.remove((item_id, predicted_rating))
+
+    return r_predicted_ratings
+
+
 # returns the r items with highest predicted rating
 def get_r_best_recommendations(predicted_ratings_dict, R):
 
     # choose R most similar entries and return them
     c = Counter(predicted_ratings_dict)
     r_predicted_ratings = c.most_common(R)
+    
+    filtered_r_predicted_ratings = filter_recommendations(r_predicted_ratings)
 
-    return r_predicted_ratings
+    return filtered_r_predicted_ratings
 
 
 # uses postfiltering to incorporate contexts into the recommendations
@@ -173,4 +189,4 @@ def filter_pof(predicted_rating, num_neighbours_rated, N, threshold):
 
     if contextual_probability > threshold:
         return predicted_rating
-    return 0
+    return np.float64(0.0)
