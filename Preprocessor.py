@@ -46,15 +46,15 @@ def get_user_ratings_preprocessing(user_id, filtered_main_dataframe):
 # if user has multiple ratings for one item, average them
 def preprocess():
 
-    filtered_main_dataframe = filter_context_info()
-    user_id_list = get_user_id_list(filtered_main_dataframe)
+    #landscaped_main_dataframe = generate_random_contexts()
+    user_id_list = get_user_id_list(main_dataframe)
 
     processed_main_dataframe = pd.DataFrame(columns=['UserID', 'ItemID', 'Rating', 'landscape'])
 
     # for each user's each item ratings, check if they rated that item multiple times
     for user_id in user_id_list:
 
-        user_ratings = get_user_ratings_preprocessing(user_id, filtered_main_dataframe)
+        user_ratings = get_user_ratings_preprocessing(user_id, main_dataframe)
 
         unique_rows = user_ratings.drop_duplicates('ItemID', keep=False)
         duplicate_rows = user_ratings[user_ratings.duplicated(['ItemID'])]
@@ -65,7 +65,6 @@ def preprocess():
 
         for item_id in user_item_id_list:
 
-            # TOFIX - items not giving duplicates properly
             duplicate_items = duplicate_rows[duplicate_rows['ItemID'] == item_id]
             
             rating_list = duplicate_items['Rating']
@@ -87,8 +86,27 @@ def preprocess():
     return processed_main_dataframe, user_id_list
 
 
-def filter_context_info():
+# generate a random landscape context for those that do not have one
+def generate_random_contexts():
 
-    filtered_dataframe = main_dataframe[main_dataframe['landscape'].apply(lambda x: isinstance(x, str))]
+    landscaped_main_dataframe = main_dataframe
+    landscape_types = ['urban', 'mountains', 'countryside', 'coastline']
+    landscapes = main_dataframe.loc[:, 'landscape']
 
-    return filtered_dataframe
+    for i in range(0, len(landscapes)):
+
+        landscape = landscapes[i]
+        if type(landscape) == float:
+            landscaped_main_dataframe.at[i, 'landscape'] = np.random.choice(landscape_types)
+    
+    del landscaped_main_dataframe['DrivingStyle']
+    del landscaped_main_dataframe['mood']
+    del landscaped_main_dataframe['naturalphenomena ']
+    del landscaped_main_dataframe['RoadType']
+    del landscaped_main_dataframe['sleepiness']
+    del landscaped_main_dataframe['trafficConditions']
+    del landscaped_main_dataframe['weather']
+
+    landscaped_main_dataframe.to_csv("dataset/in_car_music.csv")
+
+    return landscaped_main_dataframe

@@ -26,7 +26,7 @@ def convert_context(context):
 # returns the vector of a all specific user's ratings 
 def get_user_ratings(user_id):
 
-    user_dataframe = main_dataframe[main_dataframe['UserID'] == user_id]
+    user_dataframe = main_dataframe[main_dataframe['UserID'] == str(user_id)]
     user_ratings = user_dataframe[['ItemID', 'Rating', 'landscape']]
 
     return user_ratings
@@ -36,7 +36,7 @@ def get_user_ratings(user_id):
 def get_item_rating(user_id, item_id, context):
 
     user_ratings = get_user_ratings(user_id)
-    item_rating = user_ratings[user_ratings['ItemID'] == item_id]
+    item_rating = user_ratings[user_ratings['ItemID'] == str(item_id)]
 
     if not item_rating.empty:
         if item_rating['landscape'].iloc[0] == context:

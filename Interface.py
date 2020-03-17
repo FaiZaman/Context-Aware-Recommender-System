@@ -128,6 +128,7 @@ def display_recommendations(user_id, predicted_ratings):
 
     # reorder columns and sort from most to least recommended
     recommendations = recommendations[['ItemID', 'title', 'artist', 'Predicted Rating']]
+    recommendations = recommendations.rename(columns={"title": "Song Title", "artist": "Artist"})
     recommendations = recommendations.sort_values(by=['Predicted Rating'], ascending=False)
     recommendations = recommendations.reset_index(drop=True)
 
