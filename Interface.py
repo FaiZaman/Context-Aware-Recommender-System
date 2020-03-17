@@ -14,18 +14,32 @@ R = 10  # number of recommendations to output
 threshold = 0.1     # threshold for Filter PoF
 
 main_dataframe, user_id_list, item_id_list = fetch_data()
-system('cls')
-print("Welcome to the Music Recommender System! Please enter your user ID:")
+
+
+# logs user in given that ID they provided was valid
+def sign_in():
+
+    print("Welcome to the Music Recommender System! Please enter your user ID:")
+
+    is_valid_id = False
+
+    while not is_valid_id:
+
+        user_id = get_user_id_input()
+        is_valid_id = validate_user(user_id)
+
+        if not is_valid_id:
+            print("The user " + str(user_id) + " does not exist. Please try again:")
+    
+    return user_id
 
 
 # displays menu when user signs in
 def main_menu(user_id):
 
-    print("====== Music Recommender System ======")
-    print("Welcome, User " + str(user_id) + "!\n")
-    print("Press G to generate recommendations")
-    print("Press X to sign out of your account")
-    print("Press Q to quit the Music Recommender System")
+    print("Press G to generate your recommendations.")
+    print("Press X to sign out of your account.")
+    print("Press Q to quit the Music Recommender System.")
     
     while True:
         command = str(input())
@@ -36,16 +50,17 @@ def main_menu(user_id):
             print("Invalid command. Please try again.")
     
     if command == 'G':
-        get_recommendations()
+        get_recommendations(user_id)
+        main_menu(user_id)
     elif command == 'X':
-        sign_in()
+        main()
     else:
         sys.exit()
 
 
-def sign_in():
+# takes user ID as input explicitly and logs them in
+def get_user_id_input():
 
-    # takes user ID as input explicitly and logs them in
     while True:
         try:
             user_id = int(input())
@@ -88,18 +103,7 @@ def display_recommendations(user_id, predicted_ratings):
     print(recommendations)
 
 
-is_valid_id = False
-
-while not is_valid_id:
-
-    user_id = sign_in()
-    is_valid_id = validate_user(user_id)
-
-    if not is_valid_id:
-        print("The user " + str(user_id) + " does not exist. Please try again:")
-
-
-def get_recommendations():
+def get_recommendations(user_id):
 
      # get cosine similarities between users
     similarity_dict = compute_similarities(user_id)
@@ -115,5 +119,14 @@ def get_recommendations():
 
     display_recommendations(user_id, r_predicted_ratings)
 
-main_menu(user_id)
-#get_recommendations()
+
+# basic process to call to start program
+def main():
+
+    system('cls')
+    print("===================== Music Recommender System =====================")
+    user_id = sign_in()
+    print("Welcome, User " + str(user_id) + "!\n")
+    main_menu(user_id)
+
+main()
