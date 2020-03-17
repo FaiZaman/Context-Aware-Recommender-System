@@ -75,7 +75,7 @@ def main_menu(user_id, context, R):
             print("Invalid command. Please try again.")
     
     if command == 'G':
-        get_recommendations(user_id, R)
+        get_recommendations(user_id, context, R)
         main_menu(user_id, context, R)
 
     elif command == 'S':
@@ -134,7 +134,7 @@ def display_recommendations(user_id, predicted_ratings):
     print(recommendations, "\n")
 
 
-def get_recommendations(user_id, R):
+def get_recommendations(user_id, context, R):
 
      # get cosine similarities between users
     similarity_dict = compute_similarities(user_id)
@@ -143,7 +143,7 @@ def get_recommendations(user_id, R):
     neighbourhood = get_user_neighbourhood(similarity_dict, N)
 
     # get all predicted ratings for this user's unrated items
-    predicted_ratings_dict = compute_recommendations(user_id, neighbourhood, threshold)
+    predicted_ratings_dict = compute_recommendations(user_id, context, neighbourhood, threshold)
 
     # get the r highest predicted ratings to display
     r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)

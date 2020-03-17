@@ -33,12 +33,16 @@ def get_user_ratings(user_id):
 
 
 # returns the rating user u gave to item i
-def get_item_rating(user_id, item_id):
+def get_item_rating(user_id, item_id, context):
 
     user_ratings = get_user_ratings(user_id)
     item_rating = user_ratings[user_ratings['ItemID'] == item_id]
 
-    return item_rating
+    if not item_rating.empty:
+        if item_rating['landscape'].iloc[0] == context:
+            return item_rating
+
+    return pd.DataFrame()
 
 
 # returns R items not rated by the user
@@ -122,9 +126,7 @@ def get_user_neighbourhood(similarity_dict, N):
 
 
 # calculate r recommendations for unrated items for a user
-def compute_recommendations(user_id, neighbourhood, threshold):
-
-    # TODO - check whether we need the specific context - currently done without
+def compute_recommendations(user_id, context, neighbourhood, threshold):
 
     unrated_items = get_unrated_items(user_id)
     predicted_ratings_dict = {}
@@ -143,9 +145,9 @@ def compute_recommendations(user_id, neighbourhood, threshold):
             similarity = user[1]
 
             # get rating for same item for current neighbour
-            neighbour_item_rating = get_item_rating(neighbour_id, item_id)
+            neighbour_item_rating = get_item_rating(neighbour_id, item_id, context)
 
-            if not neighbour_item_rating.empty:     #  if neighbour did rate item
+            if not neighbour_item_rating.empty:     #  if neighbour did rate item in specific context
                 
                 num_neighbours_rated += 1
                 neighbour_item_rating = neighbour_item_rating['Rating'].iloc[0]
@@ -175,11 +177,9 @@ def compute_recommendations(user_id, neighbourhood, threshold):
 # remove recommendations with rating of 0 or NaN
 def filter_recommendations(r_predicted_ratings):
 
-    print(r_predicted_ratings)
     for (item_id, predicted_rating) in r_predicted_ratings:
 
         if predicted_rating < 2 or math.isnan(predicted_rating):
-            print(item_id, predicted_rating, type(predicted_rating))
             r_predicted_ratings.remove((item_id, predicted_rating))
 
     return r_predicted_ratings
