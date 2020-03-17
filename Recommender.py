@@ -8,6 +8,21 @@ from Preprocessor import fetch_data
 main_dataframe, user_id_list, item_id_list = fetch_data()
 
 
+# converts user's letter input to a word that can be searched for
+def convert_context(context):
+
+    if context == 'u':
+        context = 'urban'
+    elif context == 'm':
+        context = 'mountains'
+    elif context == 'cs':
+        context = 'countryside'
+    elif context == 'cl':
+        context = 'coastline'
+    
+    return context
+
+
 # returns the vector of a all specific user's ratings 
 def get_user_ratings(user_id):
 

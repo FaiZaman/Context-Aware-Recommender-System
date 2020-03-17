@@ -1,8 +1,8 @@
 id, question, dimension, value, positiveexplanation, negativeexplanation
 1,Imagine your are driving in a relaxed mood.,driving style,relaxed driving,\N,\N
 2,Imagine your driving style is very sportive.,driving style,sport driving,\N,\N
-3,Imagine you are driving along a coast line.,landscape,coast line,\N,\N
-4,Imagine you are on a country side.,landscape,country side,\N,\N
+3,Imagine you are driving along a coastline.,landscape,coastline,\N,\N
+4,Imagine you are on a countryside.,landscape,countryside,\N,\N
 5,Imagine you are driving between mountains or hills.,landscape,mountains/hills,\N,\N
 6,Imagine you are driving in a city.,landscape,urban,\N,\N
 7,Imagine you are feeling very active.,mood,active,\N,\N

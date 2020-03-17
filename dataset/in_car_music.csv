@@ -25,8 +25,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1001,251,2,NA,urban,NA,NA,NA,NA,NA,NA
 1001,294,4,NA,mountains,NA,NA,NA,NA,NA,NA
 1001,674,3,NA,mountains,NA,NA,NA,NA,NA,NA
-1001,267,4,NA,country side,NA,NA,NA,NA,NA,NA
-1001,694,4,NA,coast line,NA,NA,NA,NA,NA,NA
+1001,267,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1001,694,4,NA,coastline,NA,NA,NA,NA,NA,NA
 1001,754,2,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1001,259,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1001,259,1,NA,NA,NA,NA,NA,NA,NA,NA
@@ -106,17 +106,17 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1002,751,2,NA,urban,NA,NA,NA,NA,NA,NA
 1002,273,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1002,743,2,NA,mountains,NA,NA,NA,NA,NA,NA
-1002,256,1,NA,country side,NA,NA,NA,NA,NA,NA
-1002,748,1,NA,country side,NA,NA,NA,NA,NA,NA
-1002,719,1,NA,country side,NA,NA,NA,NA,NA,NA
-1002,737,1,NA,country side,NA,NA,NA,NA,NA,NA
-1002,726,3,NA,country side,NA,NA,NA,NA,NA,NA
-1002,690,1,NA,country side,NA,NA,NA,NA,NA,NA
-1002,744,1,NA,country side,NA,NA,NA,NA,NA,NA
-1002,732,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1002,251,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1002,743,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1002,263,5,NA,coast line,NA,NA,NA,NA,NA,NA
+1002,256,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1002,748,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1002,719,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1002,737,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1002,726,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1002,690,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1002,744,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1002,732,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1002,251,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1002,743,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1002,263,5,NA,coastline,NA,NA,NA,NA,NA,NA
 1002,745,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1002,719,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1002,683,4,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -188,8 +188,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1003,736,1,NA,NA,active,NA,NA,NA,NA,NA
 1003,271,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1003,762,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1003,711,1,NA,country side,NA,NA,NA,NA,NA,NA
-1003,739,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1003,711,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1003,739,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1003,711,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1003,269,2,sport driving,NA,NA,NA,NA,NA,NA,NA
 1003,762,1,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -280,8 +280,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1005,269,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1005,758,3,NA,mountains,NA,NA,NA,NA,NA,NA
 1005,251,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1005,251,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1005,737,3,NA,coast line,NA,NA,NA,NA,NA,NA
+1005,251,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1005,737,3,NA,coastline,NA,NA,NA,NA,NA,NA
 1005,707,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1005,676,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1005,677,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -550,26 +550,26 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1006,757,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1006,267,3,NA,mountains,NA,NA,NA,NA,NA,NA
 1006,745,3,NA,mountains,NA,NA,NA,NA,NA,NA
-1006,759,2,NA,country side,NA,NA,NA,NA,NA,NA
-1006,753,4,NA,country side,NA,NA,NA,NA,NA,NA
-1006,249,4,NA,country side,NA,NA,NA,NA,NA,NA
-1006,724,2,NA,country side,NA,NA,NA,NA,NA,NA
-1006,262,3,NA,country side,NA,NA,NA,NA,NA,NA
-1006,260,2,NA,country side,NA,NA,NA,NA,NA,NA
-1006,686,3,NA,country side,NA,NA,NA,NA,NA,NA
-1006,259,2,NA,country side,NA,NA,NA,NA,NA,NA
-1006,276,1,NA,country side,NA,NA,NA,NA,NA,NA
-1006,680,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,711,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,270,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,725,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,718,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,692,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,709,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,745,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,704,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,676,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1006,683,3,NA,coast line,NA,NA,NA,NA,NA,NA
+1006,759,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,753,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,249,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,724,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,262,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,260,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,686,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,259,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,276,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1006,680,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,711,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,270,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,725,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,718,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,692,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,709,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,745,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,704,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,676,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1006,683,3,NA,coastline,NA,NA,NA,NA,NA,NA
 1006,741,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1006,680,0,sport driving,NA,NA,NA,NA,NA,NA,NA
 1006,716,1,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -724,7 +724,7 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1007,686,1,NA,urban,NA,NA,NA,NA,NA,NA
 1007,739,2,NA,mountains,NA,NA,NA,NA,NA,NA
 1007,260,4,NA,mountains,NA,NA,NA,NA,NA,NA
-1007,739,3,NA,country side,NA,NA,NA,NA,NA,NA
+1007,739,3,NA,countryside,NA,NA,NA,NA,NA,NA
 1007,266,3,NA,NA,NA,NA,NA,NA,NA,NA
 1007,714,3,NA,NA,NA,NA,NA,NA,NA,NA
 1007,686,1,NA,NA,NA,NA,NA,NA,NA,NA
@@ -785,14 +785,14 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1008,691,1,NA,urban,NA,NA,NA,NA,NA,NA
 1008,721,1,NA,urban,NA,NA,NA,NA,NA,NA
 1008,695,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1008,746,3,NA,country side,NA,NA,NA,NA,NA,NA
-1008,727,2,NA,country side,NA,NA,NA,NA,NA,NA
-1008,689,4,NA,country side,NA,NA,NA,NA,NA,NA
-1008,711,1,NA,country side,NA,NA,NA,NA,NA,NA
-1008,274,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1008,746,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1008,695,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1008,701,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1008,746,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1008,727,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1008,689,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1008,711,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1008,274,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1008,746,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1008,695,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1008,701,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1008,759,2,sport driving,NA,NA,NA,NA,NA,NA,NA
 1008,270,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1008,693,1,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -1003,30 +1003,30 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1009,706,3,NA,mountains,NA,NA,NA,NA,NA,NA
 1009,716,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1009,692,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1009,284,1,NA,country side,NA,NA,NA,NA,NA,NA
-1009,291,4,NA,country side,NA,NA,NA,NA,NA,NA
-1009,250,4,NA,country side,NA,NA,NA,NA,NA,NA
-1009,728,1,NA,country side,NA,NA,NA,NA,NA,NA
-1009,678,2,NA,country side,NA,NA,NA,NA,NA,NA
-1009,731,1,NA,country side,NA,NA,NA,NA,NA,NA
-1009,759,1,NA,country side,NA,NA,NA,NA,NA,NA
-1009,278,1,NA,country side,NA,NA,NA,NA,NA,NA
-1009,689,1,NA,country side,NA,NA,NA,NA,NA,NA
-1009,285,1,NA,country side,NA,NA,NA,NA,NA,NA
-1009,267,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,282,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,289,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,259,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,276,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,288,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,274,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,262,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,281,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,725,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,733,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,741,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,707,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1009,285,2,NA,coast line,NA,NA,NA,NA,NA,NA
+1009,284,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,291,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,250,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,728,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,678,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,731,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,759,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,278,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,689,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,285,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1009,267,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,282,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,289,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,259,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,276,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,288,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,274,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,262,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,281,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,725,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,733,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,741,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,707,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1009,285,2,NA,coastline,NA,NA,NA,NA,NA,NA
 1009,284,3,sport driving,NA,NA,NA,NA,NA,NA,NA
 1009,289,3,sport driving,NA,NA,NA,NA,NA,NA,NA
 1009,267,4,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -1148,10 +1148,10 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1010,740,3,NA,NA,active,NA,NA,NA,NA,NA
 1010,249,2,NA,NA,active,NA,NA,NA,NA,NA
 1010,713,1,NA,urban,NA,NA,NA,NA,NA,NA
-1010,286,3,NA,country side,NA,NA,NA,NA,NA,NA
-1010,755,3,NA,country side,NA,NA,NA,NA,NA,NA
-1010,731,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1010,755,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1010,286,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1010,755,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1010,731,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1010,755,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1010,286,2,sport driving,NA,NA,NA,NA,NA,NA,NA
 1010,713,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1010,755,2,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -1179,7 +1179,7 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1011,252,3,NA,NA,active,NA,NA,NA,NA,NA
 1011,248,3,NA,mountains,NA,NA,NA,NA,NA,NA
 1011,686,3,NA,mountains,NA,NA,NA,NA,NA,NA
-1011,252,4,NA,country side,NA,NA,NA,NA,NA,NA
+1011,252,4,NA,countryside,NA,NA,NA,NA,NA,NA
 1011,694,2,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1011,263,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1011,252,4,NA,NA,NA,NA,NA,NA,NA,NA
@@ -1356,24 +1356,24 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1012,693,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1012,743,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1012,691,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1012,706,2,NA,country side,NA,NA,NA,NA,NA,NA
-1012,757,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,729,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,731,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,256,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,292,3,NA,country side,NA,NA,NA,NA,NA,NA
-1012,272,2,NA,country side,NA,NA,NA,NA,NA,NA
-1012,690,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,282,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,741,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,284,1,NA,country side,NA,NA,NA,NA,NA,NA
-1012,284,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1012,728,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1012,266,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1012,733,0,NA,coast line,NA,NA,NA,NA,NA,NA
-1012,701,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1012,741,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1012,754,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1012,706,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,757,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,729,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,731,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,256,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,292,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,272,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,690,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,282,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,741,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,284,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1012,284,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1012,728,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1012,266,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1012,733,0,NA,coastline,NA,NA,NA,NA,NA,NA
+1012,701,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1012,741,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1012,754,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1012,286,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1012,708,3,sport driving,NA,NA,NA,NA,NA,NA,NA
 1012,258,3,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -1512,9 +1512,9 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1014,294,4,NA,urban,NA,NA,NA,NA,NA,NA
 1014,752,3,NA,urban,NA,NA,NA,NA,NA,NA
 1014,285,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1014,275,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1014,279,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1014,742,4,NA,coast line,NA,NA,NA,NA,NA,NA
+1014,275,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1014,279,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1014,742,4,NA,coastline,NA,NA,NA,NA,NA,NA
 1014,679,3,sport driving,NA,NA,NA,NA,NA,NA,NA
 1014,742,5,sport driving,NA,NA,NA,NA,NA,NA,NA
 1014,752,5,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -1544,8 +1544,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1015,683,4,NA,NA,active,NA,NA,NA,NA,NA
 1015,675,2,NA,NA,active,NA,NA,NA,NA,NA
 1015,733,3,NA,mountains,NA,NA,NA,NA,NA,NA
-1015,683,3,NA,country side,NA,NA,NA,NA,NA,NA
-1015,675,3,NA,country side,NA,NA,NA,NA,NA,NA
+1015,683,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1015,675,3,NA,countryside,NA,NA,NA,NA,NA,NA
 1015,706,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1015,675,2,sport driving,NA,NA,NA,NA,NA,NA,NA
 1015,259,1,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -1569,7 +1569,7 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1016,262,3,NA,NA,happy,NA,NA,NA,NA,NA
 1016,256,1,NA,NA,active,NA,NA,NA,NA,NA
 1016,250,4,NA,urban,NA,NA,NA,NA,NA,NA
-1016,744,3,NA,country side,NA,NA,NA,NA,NA,NA
+1016,744,3,NA,countryside,NA,NA,NA,NA,NA,NA
 1016,279,1,NA,NA,NA,NA,NA,NA,NA,NA
 1016,250,4,NA,NA,NA,NA,NA,NA,NA,NA
 1016,256,2,NA,NA,NA,NA,NA,NA,NA,NA
@@ -1615,9 +1615,9 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1018,288,3,NA,urban,NA,NA,NA,NA,NA,NA
 1018,709,2,NA,urban,NA,NA,NA,NA,NA,NA
 1018,733,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1018,704,3,NA,country side,NA,NA,NA,NA,NA,NA
-1018,711,2,NA,country side,NA,NA,NA,NA,NA,NA
-1018,698,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1018,704,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1018,711,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1018,698,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1018,705,5,sport driving,NA,NA,NA,NA,NA,NA,NA
 1018,700,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1018,704,5,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -2142,54 +2142,54 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1019,705,0,NA,mountains,NA,NA,NA,NA,NA,NA
 1019,754,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1019,283,5,NA,mountains,NA,NA,NA,NA,NA,NA
-1019,683,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,278,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,288,5,NA,country side,NA,NA,NA,NA,NA,NA
-1019,757,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,756,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,293,5,NA,country side,NA,NA,NA,NA,NA,NA
-1019,694,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,717,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,761,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,707,3,NA,country side,NA,NA,NA,NA,NA,NA
-1019,268,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,737,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,753,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,296,5,NA,country side,NA,NA,NA,NA,NA,NA
-1019,678,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,715,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,729,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,707,3,NA,country side,NA,NA,NA,NA,NA,NA
-1019,739,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,728,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,276,5,NA,country side,NA,NA,NA,NA,NA,NA
-1019,732,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,761,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,736,2,NA,country side,NA,NA,NA,NA,NA,NA
-1019,745,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,722,1,NA,country side,NA,NA,NA,NA,NA,NA
-1019,750,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,259,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,741,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,685,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,704,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,278,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,281,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,288,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,680,0,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,758,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,755,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,717,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,761,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,676,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,734,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,706,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,697,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,684,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,744,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,273,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,276,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1019,753,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1019,683,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,278,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,288,5,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,757,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,756,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,293,5,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,694,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,717,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,761,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,707,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,268,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,737,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,753,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,296,5,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,678,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,715,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,729,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,707,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,739,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,728,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,276,5,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,732,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,761,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,736,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,745,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,722,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1019,750,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,259,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,741,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,685,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,704,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,278,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,281,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,288,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,680,0,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,758,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,755,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,717,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,761,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,676,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,734,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,706,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,697,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,684,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,744,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,273,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,276,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1019,753,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1019,258,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1019,742,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1019,674,1,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -2528,17 +2528,17 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1020,281,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1020,714,3,NA,mountains,NA,NA,NA,NA,NA,NA
 1020,739,0,NA,mountains,NA,NA,NA,NA,NA,NA
-1020,296,1,NA,country side,NA,NA,NA,NA,NA,NA
-1020,684,2,NA,country side,NA,NA,NA,NA,NA,NA
-1020,722,1,NA,country side,NA,NA,NA,NA,NA,NA
-1020,695,0,NA,country side,NA,NA,NA,NA,NA,NA
-1020,738,3,NA,country side,NA,NA,NA,NA,NA,NA
-1020,737,2,NA,country side,NA,NA,NA,NA,NA,NA
-1020,739,0,NA,country side,NA,NA,NA,NA,NA,NA
-1020,732,0,NA,country side,NA,NA,NA,NA,NA,NA
-1020,702,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1020,737,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1020,751,0,NA,coast line,NA,NA,NA,NA,NA,NA
+1020,296,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,684,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,722,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,695,0,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,738,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,737,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,739,0,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,732,0,NA,countryside,NA,NA,NA,NA,NA,NA
+1020,702,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1020,737,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1020,751,0,NA,coastline,NA,NA,NA,NA,NA,NA
 1020,296,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1020,749,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1020,714,5,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -2596,7 +2596,7 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1021,757,0,NA,NA,active,NA,NA,NA,NA,NA
 1021,752,2,NA,mountains,NA,NA,NA,NA,NA,NA
 1021,708,0,NA,mountains,NA,NA,NA,NA,NA,NA
-1021,683,4,NA,country side,NA,NA,NA,NA,NA,NA
+1021,683,4,NA,countryside,NA,NA,NA,NA,NA,NA
 1021,743,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1021,741,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1021,683,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -2636,9 +2636,9 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1022,256,1,NA,NA,active,NA,NA,NA,NA,NA
 1022,737,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1022,281,4,NA,mountains,NA,NA,NA,NA,NA,NA
-1022,254,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1022,710,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1022,678,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1022,254,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1022,710,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1022,678,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1022,710,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1022,264,2,sport driving,NA,NA,NA,NA,NA,NA,NA
 1022,710,1,NA,NA,NA,NA,NA,NA,NA,NA
@@ -2749,15 +2749,15 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1023,253,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1023,730,5,NA,mountains,NA,NA,NA,NA,NA,NA
 1023,251,5,NA,mountains,NA,NA,NA,NA,NA,NA
-1023,761,2,NA,country side,NA,NA,NA,NA,NA,NA
-1023,699,2,NA,country side,NA,NA,NA,NA,NA,NA
-1023,282,0,NA,country side,NA,NA,NA,NA,NA,NA
-1023,280,0,NA,country side,NA,NA,NA,NA,NA,NA
-1023,754,2,NA,country side,NA,NA,NA,NA,NA,NA
-1023,734,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1023,692,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1023,699,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1023,682,4,NA,coast line,NA,NA,NA,NA,NA,NA
+1023,761,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1023,699,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1023,282,0,NA,countryside,NA,NA,NA,NA,NA,NA
+1023,280,0,NA,countryside,NA,NA,NA,NA,NA,NA
+1023,754,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1023,734,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1023,692,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1023,699,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1023,682,4,NA,coastline,NA,NA,NA,NA,NA,NA
 1023,703,5,sport driving,NA,NA,NA,NA,NA,NA,NA
 1023,272,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1023,684,4,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -2861,8 +2861,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1025,253,4,NA,NA,NA,afternoon,NA,NA,NA,NA
 1025,253,4,NA,NA,lazy,NA,NA,NA,NA,NA
 1025,284,4,NA,NA,active,NA,NA,NA,NA,NA
-1025,251,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1025,291,4,NA,coast line,NA,NA,NA,NA,NA,NA
+1025,251,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1025,291,4,NA,coastline,NA,NA,NA,NA,NA,NA
 1025,251,4,NA,NA,NA,NA,NA,NA,NA,NA
 1025,253,3,NA,NA,NA,NA,NA,NA,NA,NA
 1025,291,4,NA,NA,NA,NA,NA,NA,NA,NA
@@ -2911,11 +2911,11 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1026,686,5,NA,urban,NA,NA,NA,NA,NA,NA
 1026,747,5,NA,mountains,NA,NA,NA,NA,NA,NA
 1026,276,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1026,266,3,NA,country side,NA,NA,NA,NA,NA,NA
-1026,731,1,NA,country side,NA,NA,NA,NA,NA,NA
-1026,275,1,NA,country side,NA,NA,NA,NA,NA,NA
-1026,762,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1026,698,3,NA,coast line,NA,NA,NA,NA,NA,NA
+1026,266,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1026,731,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1026,275,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1026,762,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1026,698,3,NA,coastline,NA,NA,NA,NA,NA,NA
 1026,275,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1026,760,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1026,290,1,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -2974,8 +2974,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1027,712,5,NA,NA,happy,NA,NA,NA,NA,NA
 1027,728,0,NA,urban,NA,NA,NA,NA,NA,NA
 1027,681,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1027,681,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1027,712,5,NA,coast line,NA,NA,NA,NA,NA,NA
+1027,681,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1027,712,5,NA,coastline,NA,NA,NA,NA,NA,NA
 1027,258,1,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1027,681,3,NA,NA,NA,NA,NA,NA,NA,NA
 1027,728,0,NA,NA,NA,NA,NA,NA,NA,NA
@@ -2994,7 +2994,7 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1028,738,1,NA,NA,NA,day time,NA,NA,NA,NA
 1028,702,1,NA,urban,NA,NA,NA,NA,NA,NA
 1028,252,1,NA,urban,NA,NA,NA,NA,NA,NA
-1028,252,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1028,252,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1028,738,2,sport driving,NA,NA,NA,NA,NA,NA,NA
 1028,252,5,NA,NA,NA,NA,NA,NA,NA,NA
 1028,738,2,NA,NA,NA,NA,NA,NA,NA,NA
@@ -3011,7 +3011,7 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1029,745,3,NA,urban,NA,NA,NA,NA,NA,NA
 1029,283,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1029,699,4,NA,mountains,NA,NA,NA,NA,NA,NA
-1029,690,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1029,690,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1029,745,2,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1029,674,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1029,745,0,NA,NA,NA,NA,NA,NA,NA,NA
@@ -3041,10 +3041,10 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1030,725,3,NA,urban,NA,NA,NA,NA,NA,NA
 1030,732,2,NA,urban,NA,NA,NA,NA,NA,NA
 1030,702,4,NA,mountains,NA,NA,NA,NA,NA,NA
-1030,736,5,NA,country side,NA,NA,NA,NA,NA,NA
-1030,702,2,NA,country side,NA,NA,NA,NA,NA,NA
-1030,687,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1030,732,2,NA,coast line,NA,NA,NA,NA,NA,NA
+1030,736,5,NA,countryside,NA,NA,NA,NA,NA,NA
+1030,702,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1030,687,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1030,732,2,NA,coastline,NA,NA,NA,NA,NA,NA
 1030,751,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1030,273,5,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1030,760,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -3071,8 +3071,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1031,265,4,NA,NA,active,NA,NA,NA,NA,NA
 1031,254,1,NA,NA,active,NA,NA,NA,NA,NA
 1031,724,4,NA,urban,NA,NA,NA,NA,NA,NA
-1031,254,2,NA,country side,NA,NA,NA,NA,NA,NA
-1031,739,3,NA,coast line,NA,NA,NA,NA,NA,NA
+1031,254,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1031,739,3,NA,coastline,NA,NA,NA,NA,NA,NA
 1031,724,3,sport driving,NA,NA,NA,NA,NA,NA,NA
 1031,739,3,NA,NA,NA,NA,NA,NA,NA,NA
 1031,265,4,NA,NA,NA,NA,NA,NA,NA,NA
@@ -3125,13 +3125,13 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1032,758,3,NA,mountains,NA,NA,NA,NA,NA,NA
 1032,705,4,NA,mountains,NA,NA,NA,NA,NA,NA
 1032,262,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1032,682,2,NA,country side,NA,NA,NA,NA,NA,NA
-1032,675,2,NA,country side,NA,NA,NA,NA,NA,NA
-1032,755,2,NA,country side,NA,NA,NA,NA,NA,NA
-1032,727,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1032,705,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1032,252,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1032,684,3,NA,coast line,NA,NA,NA,NA,NA,NA
+1032,682,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1032,675,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1032,755,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1032,727,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1032,705,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1032,252,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1032,684,3,NA,coastline,NA,NA,NA,NA,NA,NA
 1032,716,0,sport driving,NA,NA,NA,NA,NA,NA,NA
 1032,740,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1032,740,1,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -3442,33 +3442,33 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1033,707,5,NA,mountains,NA,NA,NA,NA,NA,NA
 1033,743,5,NA,mountains,NA,NA,NA,NA,NA,NA
 1033,695,3,NA,mountains,NA,NA,NA,NA,NA,NA
-1033,692,4,NA,country side,NA,NA,NA,NA,NA,NA
-1033,719,5,NA,country side,NA,NA,NA,NA,NA,NA
-1033,686,2,NA,country side,NA,NA,NA,NA,NA,NA
-1033,755,4,NA,country side,NA,NA,NA,NA,NA,NA
-1033,759,2,NA,country side,NA,NA,NA,NA,NA,NA
-1033,689,5,NA,country side,NA,NA,NA,NA,NA,NA
-1033,727,4,NA,country side,NA,NA,NA,NA,NA,NA
-1033,722,4,NA,country side,NA,NA,NA,NA,NA,NA
-1033,699,3,NA,country side,NA,NA,NA,NA,NA,NA
-1033,726,1,NA,country side,NA,NA,NA,NA,NA,NA
-1033,758,2,NA,country side,NA,NA,NA,NA,NA,NA
-1033,681,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,752,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,689,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,755,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,698,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,751,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,284,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,697,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,291,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,283,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,276,3,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,738,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,721,5,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,703,4,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,758,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1033,290,5,NA,coast line,NA,NA,NA,NA,NA,NA
+1033,692,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,719,5,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,686,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,755,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,759,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,689,5,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,727,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,722,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,699,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,726,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,758,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1033,681,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,752,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,689,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,755,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,698,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,751,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,284,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,697,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,291,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,283,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,276,3,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,738,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,721,5,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,703,4,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,758,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1033,290,5,NA,coastline,NA,NA,NA,NA,NA,NA
 1033,274,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1033,678,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1033,704,2,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -3678,10 +3678,10 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1035,758,4,NA,mountains,NA,NA,NA,NA,NA,NA
 1035,674,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1035,704,0,NA,mountains,NA,NA,NA,NA,NA,NA
-1035,683,2,NA,country side,NA,NA,NA,NA,NA,NA
-1035,730,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1035,704,0,NA,coast line,NA,NA,NA,NA,NA,NA
-1035,291,2,NA,coast line,NA,NA,NA,NA,NA,NA
+1035,683,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1035,730,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1035,704,0,NA,coastline,NA,NA,NA,NA,NA,NA
+1035,291,2,NA,coastline,NA,NA,NA,NA,NA,NA
 1035,284,3,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1035,276,0,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1035,758,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -3764,12 +3764,12 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1036,685,2,NA,mountains,NA,NA,NA,NA,NA,NA
 1036,297,2,NA,mountains,NA,NA,NA,NA,NA,NA
 1036,745,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1036,271,2,NA,country side,NA,NA,NA,NA,NA,NA
-1036,251,4,NA,country side,NA,NA,NA,NA,NA,NA
-1036,680,2,NA,country side,NA,NA,NA,NA,NA,NA
-1036,688,2,NA,country side,NA,NA,NA,NA,NA,NA
-1036,691,2,NA,coast line,NA,NA,NA,NA,NA,NA
-1036,749,3,NA,coast line,NA,NA,NA,NA,NA,NA
+1036,271,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1036,251,4,NA,countryside,NA,NA,NA,NA,NA,NA
+1036,680,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1036,688,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1036,691,2,NA,coastline,NA,NA,NA,NA,NA,NA
+1036,749,3,NA,coastline,NA,NA,NA,NA,NA,NA
 1036,284,4,sport driving,NA,NA,NA,NA,NA,NA,NA
 1036,258,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1036,688,3,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -3819,8 +3819,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1037,680,1,NA,NA,lazy,NA,NA,NA,NA,NA
 1037,295,3,NA,NA,happy,NA,NA,NA,NA,NA
 1037,295,4,NA,mountains,NA,NA,NA,NA,NA,NA
-1037,270,1,NA,country side,NA,NA,NA,NA,NA,NA
-1037,680,2,NA,coast line,NA,NA,NA,NA,NA,NA
+1037,270,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1037,680,2,NA,coastline,NA,NA,NA,NA,NA,NA
 1037,680,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1037,680,1,NA,NA,NA,NA,NA,NA,NA,NA
 1037,270,1,NA,NA,NA,NA,NA,NA,NA,NA
@@ -3840,7 +3840,7 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1038,722,1,NA,NA,NA,afternoon,NA,NA,NA,NA
 1038,692,3,NA,NA,NA,afternoon,NA,NA,NA,NA
 1038,684,5,NA,mountains,NA,NA,NA,NA,NA,NA
-1038,692,1,NA,country side,NA,NA,NA,NA,NA,NA
+1038,692,1,NA,countryside,NA,NA,NA,NA,NA,NA
 1038,692,5,sport driving,NA,NA,NA,NA,NA,NA,NA
 1038,729,1,NA,NA,NA,NA,NA,NA,NA,NA
 1038,692,2,NA,NA,NA,NA,NA,NA,NA,NA
@@ -3887,8 +3887,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1039,717,5,NA,NA,active,NA,NA,NA,NA,NA
 1039,721,3,NA,mountains,NA,NA,NA,NA,NA,NA
 1039,710,3,NA,mountains,NA,NA,NA,NA,NA,NA
-1039,284,2,NA,country side,NA,NA,NA,NA,NA,NA
-1039,717,5,NA,coast line,NA,NA,NA,NA,NA,NA
+1039,284,2,NA,countryside,NA,NA,NA,NA,NA,NA
+1039,717,5,NA,coastline,NA,NA,NA,NA,NA,NA
 1039,288,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1039,746,3,sport driving,NA,NA,NA,NA,NA,NA,NA
 1039,678,5,sport driving,NA,NA,NA,NA,NA,NA,NA
@@ -3936,8 +3936,8 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1040,754,1,NA,NA,lazy,NA,NA,NA,NA,NA
 1040,700,4,NA,NA,happy,NA,NA,NA,NA,NA
 1040,753,2,NA,mountains,NA,NA,NA,NA,NA,NA
-1040,258,3,NA,country side,NA,NA,NA,NA,NA,NA
-1040,258,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1040,258,3,NA,countryside,NA,NA,NA,NA,NA,NA
+1040,258,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1040,723,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1040,751,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
 1040,678,4,relaxed driving,NA,NA,NA,NA,NA,NA,NA
@@ -3992,11 +3992,11 @@ UserID,ItemID,Rating,DrivingStyle,landscape,mood,naturalphenomena ,RoadType,slee
 1042,733,1,NA,urban,NA,NA,NA,NA,NA,NA
 1042,743,1,NA,mountains,NA,NA,NA,NA,NA,NA
 1042,682,1,NA,mountains,NA,NA,NA,NA,NA,NA
-1042,709,1,NA,country side,NA,NA,NA,NA,NA,NA
-1042,682,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1042,716,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1042,753,1,NA,coast line,NA,NA,NA,NA,NA,NA
-1042,709,1,NA,coast line,NA,NA,NA,NA,NA,NA
+1042,709,1,NA,countryside,NA,NA,NA,NA,NA,NA
+1042,682,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1042,716,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1042,753,1,NA,coastline,NA,NA,NA,NA,NA,NA
+1042,709,1,NA,coastline,NA,NA,NA,NA,NA,NA
 1042,286,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1042,691,1,sport driving,NA,NA,NA,NA,NA,NA,NA
 1042,716,1,sport driving,NA,NA,NA,NA,NA,NA,NA

@@ -4,10 +4,12 @@ import sys
 from os import system
 from Preprocessor import fetch_data
 from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
-                        get_user_neighbourhood, compute_recommendations, get_r_best_recommendations
+                        get_user_neighbourhood, compute_recommendations, get_r_best_recommendations, \
+                        convert_context
 
 # reading in data
 song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
+contexts = ['u', 'urban', 'm', 'mountains', 'cs', 'countryside', 'cl', 'coastline']
 
 N = 17  # neighbourhood size
 R = 10  # number of recommendations to output
@@ -34,8 +36,30 @@ def sign_in():
     return user_id
 
 
+# gets user's context explicitly
+def set_context():
+
+    print("Please enter the landscape, or press v to view the corresponding letters:")
+    while True:
+        context = str(input())
+        context = context.lower()
+        if context in contexts:
+            break;
+        elif context == 'v':
+            print("u for urban")
+            print("m for mountains")
+            print("cs for countryside")
+            print("cl for coastline")
+        else:
+            print("Invalid landscape. Please try again.")
+
+    context = convert_context(context)
+
+    return context
+
+
 # displays menu when user signs in
-def main_menu(user_id, R):
+def main_menu(user_id, context, R):
 
     print("Press G to generate your recommendations.")
     print("Press S to configure the settings.")
@@ -52,11 +76,11 @@ def main_menu(user_id, R):
     
     if command == 'G':
         get_recommendations(user_id, R)
-        main_menu(user_id, R)
+        main_menu(user_id, context, R)
 
     elif command == 'S':
-        R = configure_settings()
-        main_menu(user_id, R)
+        R = configure_settings(user_id, context, R)
+        main_menu(user_id, context, R)
 
     elif command == 'X':
         main()
@@ -128,9 +152,33 @@ def get_recommendations(user_id, R):
 
 
 # allows user to change settings based on their own preferences or due to device size/disability etc
-def configure_settings():
+def configure_settings(user_id, context, R):
 
-    print("Please enter the number of recommendations you wish to get (default 10)")
+    print("Press R to change the number of recommendations.")
+    print("Press L to change the landscape.")
+    print("Press B to go back to the main menu.")
+
+    while True:
+        command = str(input())
+        command = command.upper()
+        if command == 'R' or command == 'L' or command == 'B':
+            break;
+        else:
+            print("Invalid command. Please try again.")
+    
+    if command == 'R':
+        R = set_num_recommendations()
+    elif command == 'L':
+        print("The current landscape is " + str(context) + ".")
+        context = set_context()
+    else:
+        main_menu(user_id, context, R)
+
+
+# sets number of recommendations to display
+def set_num_recommendations():
+
+    print("Please enter the number of recommendations you wish to get (default 10):")
 
     while True:
         try:
@@ -149,6 +197,7 @@ def main():
     print("===================== Music Recommender System =====================")
     user_id = sign_in()
     print("Welcome, User " + str(user_id) + "!\n")
-    main_menu(user_id, R)
+    context = set_context()
+    main_menu(user_id, context, R)
 
 main()
