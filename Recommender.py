@@ -15,7 +15,6 @@ def get_recommendations(user_id, ratings_dataframe, context, R, N, threshold):
 
     # get user's neighbourhood of size N
     neighbourhood = get_user_neighbourhood(similarity_dict, N)
-    print(neighbourhood)
 
     # get all predicted ratings for this user's unrated items
     predicted_ratings_dict =\
@@ -27,7 +26,10 @@ def get_recommendations(user_id, ratings_dataframe, context, R, N, threshold):
     # gets the mean rating for thresholding and display recommendations
     user_mean_rating = get_user_mean_rating(user_id, ratings_dataframe)
 
-    return r_predicted_ratings, user_mean_rating
+    # only return recommendations whose predicted rating is higher than user's average rating
+    filtered_r_predicted_ratings = filter_recommendations(r_predicted_ratings, user_mean_rating)
+
+    return filtered_r_predicted_ratings, user_mean_rating
 
 
 # converts user's letter input to a word that can be searched for
@@ -84,7 +86,8 @@ def get_unrated_items(user_id, ratings_dataframe):
     user_item_list = user_ratings['ItemID'].tolist()
 
     # check item list against user ratings to find unrated items by user
-    unrated_items = [item for item in item_id_list if item not in user_item_list]
+    unrated_items = [item for item in item_id_list if str(item) not in user_item_list]
+    unrated_items.sort()
 
     return unrated_items
 
@@ -154,6 +157,7 @@ def get_user_neighbourhood(similarity_dict, N):
     # choose the N entries with highest similarity and return them
     c = Counter(similarity_dict)
     neighbourhood = c.most_common(N)
+    neighbourhood = dict(neighbourhood)
 
     return neighbourhood
 
@@ -172,10 +176,7 @@ def compute_recommendations(user_id, ratings_dataframe, context, neighbourhood, 
         num_neighbours_rated = 0
 
         # apply summation formula by all users
-        for user in neighbourhood:
-
-            neighbour_id = user[0]
-            similarity = user[1]
+        for neighbour_id, similarity in neighbourhood.items():
 
             # get rating for same item for current neighbour
             neighbour_item_rating = get_item_rating(neighbour_id, ratings_dataframe, item_id, context)
@@ -207,13 +208,6 @@ def compute_recommendations(user_id, ratings_dataframe, context, neighbourhood, 
     return predicted_ratings_dict
 
 
-# converts list of tuples of predicted ratings (item, rating) to a dictionary
-def convert_list_to_dict(predicted_ratings):
-
-    predicted_ratings_dict = dict(predicted_ratings)
-    return predicted_ratings_dict
-
-
 # sorts predicted ratings dict by item
 def sort_dict(predicted_ratings):
 
@@ -226,27 +220,25 @@ def sort_dict(predicted_ratings):
 
 
 # remove recommendations with rating of 0 or NaN
-def filter_recommendations(r_predicted_ratings):
+def filter_recommendations(predicted_ratings, user_mean_rating):
 
-    for (item_id, predicted_rating) in r_predicted_ratings:
+    predicted_ratings_copy = predicted_ratings.copy()
 
-        if predicted_rating < 2 or math.isnan(predicted_rating):
-            r_predicted_ratings.remove((item_id, predicted_rating))
+    for item_id, predicted_rating in predicted_ratings_copy.items():
 
-    return r_predicted_ratings
+        if predicted_rating < user_mean_rating or math.isnan(predicted_rating):
+            del predicted_ratings[item_id]
+
+    return predicted_ratings
 
 
 # returns the r items with highest predicted rating
 def get_r_best_recommendations(predicted_ratings_dict, R):
 
-    # choose R most similar entries and return them
+    # choose R most similar entries, sort by item ID, and return them
     c = Counter(predicted_ratings_dict)
-    r_predicted_ratings = c.most_common(R)
-    
-    # filtering and sorting
-    filtered_r_predicted_ratings = filter_recommendations(r_predicted_ratings)
-    filtered_r_predicted_ratings = convert_list_to_dict(filtered_r_predicted_ratings)
-    sorted_predicted_ratings = sort_dict(filtered_r_predicted_ratings)
+    r_predicted_ratings = dict(c.most_common(R))
+    sorted_predicted_ratings = sort_dict(r_predicted_ratings)
 
     return sorted_predicted_ratings
 
