@@ -8,22 +8,23 @@ from Preprocessor import fetch_data
 main_dataframe, user_id_list, item_id_list = fetch_data()
 
 
-def get_recommendations(user_id, context, R, N, threshold):
+def get_recommendations(user_id, ratings_dataframe, context, R, N, threshold):
 
      # get cosine similarities between users
-    similarity_dict = compute_similarities(user_id)
+    similarity_dict = compute_similarities(user_id, ratings_dataframe)
 
     # get user's neighbourhood of size N
     neighbourhood = get_user_neighbourhood(similarity_dict, N)
 
     # get all predicted ratings for this user's unrated items
-    predicted_ratings_dict = compute_recommendations(user_id, context, neighbourhood, threshold)
+    predicted_ratings_dict =\
+        compute_recommendations(user_id, ratings_dataframe, context, neighbourhood, threshold)
 
     # get the r highest predicted ratings to display
     r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
 
     # gets the mean rating for thresholding and display recommendations
-    user_mean_rating = get_user_mean_rating(user_id)
+    user_mean_rating = get_user_mean_rating(user_id, ratings_dataframe)
 
     return r_predicted_ratings, user_mean_rating
 
@@ -44,18 +45,18 @@ def convert_context(context):
 
 
 # returns the vector of a all specific user's ratings 
-def get_user_ratings(user_id):
+def get_user_ratings(user_id, ratings_dataframe):
 
-    user_dataframe = main_dataframe[main_dataframe['UserID'] == str(user_id)]
+    user_dataframe = ratings_dataframe[ratings_dataframe['UserID'] == str(user_id)]
     user_ratings = user_dataframe[['ItemID', 'Rating', 'landscape']]
 
     return user_ratings
 
 
 # returns user's average rating for an item for thresholding
-def get_user_mean_rating(user_id):
+def get_user_mean_rating(user_id, ratings_dataframe):
 
-    user_ratings = get_user_ratings(user_id)
+    user_ratings = get_user_ratings(user_id, ratings_dataframe)
     ratings_list = user_ratings['Rating']
     user_mean_rating = ratings_list.mean()
 
@@ -63,9 +64,9 @@ def get_user_mean_rating(user_id):
 
 
 # returns the rating user u gave to item i
-def get_item_rating(user_id, item_id, context):
+def get_item_rating(user_id, ratings_dataframe, item_id, context):
 
-    user_ratings = get_user_ratings(user_id)
+    user_ratings = get_user_ratings(user_id, ratings_dataframe)
     item_rating = user_ratings[user_ratings['ItemID'] == str(item_id)]
 
     if not item_rating.empty:
@@ -76,9 +77,9 @@ def get_item_rating(user_id, item_id, context):
 
 
 # returns R items not rated by the user
-def get_unrated_items(user_id):
+def get_unrated_items(user_id, ratings_dataframe):
 
-    user_ratings = get_user_ratings(user_id)
+    user_ratings = get_user_ratings(user_id, ratings_dataframe)
     user_item_list = user_ratings['ItemID'].tolist()
 
     # check item list against user ratings to find unrated items by user
@@ -106,10 +107,10 @@ def compute_cosine_similarity(dataset_i, dataset_j):
 
 
 # compares this user against all others
-def compute_similarities(user_id):
+def compute_similarities(user_id, ratings_dataframe):
 
     similarity_dict = {}
-    user_ratings = get_user_ratings(user_id)
+    user_ratings = get_user_ratings(user_id, ratings_dataframe)
 
     # remove current user so not compared against itself
     filtered_user_id_list = user_id_list.copy()
@@ -117,7 +118,7 @@ def compute_similarities(user_id):
 
     for user_j in filtered_user_id_list:
         
-        user_ratings_j = get_user_ratings(user_j)
+        user_ratings_j = get_user_ratings(user_j, ratings_dataframe)
         same_rated_items = get_same_rated_items(user_ratings, user_ratings_j)
 
         # only compute for users with items in common
@@ -156,9 +157,9 @@ def get_user_neighbourhood(similarity_dict, N):
 
 
 # calculate r recommendations for unrated items for a user
-def compute_recommendations(user_id, context, neighbourhood, threshold):
+def compute_recommendations(user_id, ratings_dataframe, context, neighbourhood, threshold):
 
-    unrated_items = get_unrated_items(user_id)
+    unrated_items = get_unrated_items(user_id, ratings_dataframe)
     predicted_ratings_dict = {}
     N = len(neighbourhood)
 
@@ -175,7 +176,7 @@ def compute_recommendations(user_id, context, neighbourhood, threshold):
             similarity = user[1]
 
             # get rating for same item for current neighbour
-            neighbour_item_rating = get_item_rating(neighbour_id, item_id, context)
+            neighbour_item_rating = get_item_rating(neighbour_id, ratings_dataframe, item_id, context)
 
             if not neighbour_item_rating.empty:     #  if neighbour did rate item in specific context
                 

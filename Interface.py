@@ -11,7 +11,8 @@ from Recommender import get_same_rated_items, compute_similarities, get_user_rat
 warnings.filterwarnings("ignore", category=RuntimeWarning) 
 
 # reading in data
-song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
+song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False,\
+                                                     delimiter=",", encoding="utf-8-sig")
 contexts = ['u', 'urban', 'm', 'mountains', 'cs', 'countryside', 'cl', 'coastline']
 
 N = 17  # neighbourhood size
@@ -79,7 +80,9 @@ def main_menu(user_id, context, R):
             print("Invalid command. Please try again.")
     
     if command == 'G':
-        r_predicted_ratings, user_mean_rating = get_recommendations(user_id, context, R, N, threshold)
+        r_predicted_ratings, user_mean_rating =\
+            get_recommendations(user_id, main_dataframe, context, R, N, threshold)
+            
         display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
         main_menu(user_id, context, R)
 
