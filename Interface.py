@@ -7,6 +7,7 @@ from Preprocessor import fetch_data
 from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
                         get_user_neighbourhood, compute_recommendations, get_r_best_recommendations, \
                         convert_context, get_user_mean_rating, get_recommendations
+from Evaluation import MAE
 
 warnings.filterwarnings("ignore", category=RuntimeWarning) 
 
@@ -67,6 +68,7 @@ def main_menu(user_id, context, R):
 
     print("Signed in as User " + str(user_id) + ".")
     print("Press G to generate your recommendations.")
+    print("Press M to calculate the mean absolute error of the system.")
     print("Press S to configure the settings.")
     print("Press X to sign out of your account.")
     print("Press Q to quit the Music Recommender System.")
@@ -74,7 +76,7 @@ def main_menu(user_id, context, R):
     while True:
         command = str(input())
         command = command.upper()
-        if command == 'G' or command == 'S' or command == 'X' or command == 'Q':
+        if command == 'G' or command == 'M' or command == 'S' or command == 'X' or command == 'Q':
             break;
         else:
             print("Invalid command. Please try again.")
@@ -84,6 +86,11 @@ def main_menu(user_id, context, R):
             get_recommendations(user_id, main_dataframe, context, R, N, threshold)
 
         display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
+        main_menu(user_id, context, R)
+
+    elif command == 'M':
+        error = MAE(main_dataframe, R, N, threshold)
+        print("The Mean Absolute Error of the Music Recommender System is " + str(error) + ".")
         main_menu(user_id, context, R)
 
     elif command == 'S':

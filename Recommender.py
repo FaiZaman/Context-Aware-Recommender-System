@@ -15,6 +15,7 @@ def get_recommendations(user_id, ratings_dataframe, context, R, N, threshold):
 
     # get user's neighbourhood of size N
     neighbourhood = get_user_neighbourhood(similarity_dict, N)
+    print(neighbourhood)
 
     # get all predicted ratings for this user's unrated items
     predicted_ratings_dict =\
@@ -139,9 +140,10 @@ def compute_similarities(user_id, ratings_dataframe):
 
             user_i_item_vector.append(rating_i)
             user_j_item_vector.append(rating_j)
-
-        cosine_similarity = compute_cosine_similarity(user_i_item_vector, user_j_item_vector)
-        similarity_dict[user_j] = cosine_similarity
+            
+        if user_i_item_vector != [0] and user_j_item_vector != [0]: # prevents NaNs
+            cosine_similarity = compute_cosine_similarity(user_i_item_vector, user_j_item_vector)
+            similarity_dict[user_j] = cosine_similarity
     
     return similarity_dict
 

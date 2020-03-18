@@ -6,11 +6,12 @@ from Recommender import get_recommendations
 
 warnings.filterwarnings("ignore", category=RuntimeWarning) 
 
-main_dataframe, user_id_list, item_id_list = fetch_data()
-contexts = ['urban', 'mountains', 'countryside', 'coastline']
+dataframe, user_id_list, item_id_list = fetch_data()
 
 # calculates the mean absolute error between the recommendations and actual ratings
-def MAE(R, N, threshold):
+def MAE(main_dataframe, R, N, threshold):
+
+    contexts = ['urban', 'mountains', 'countryside', 'coastline']
 
     # split data into train and test sets and sort
     train_set, test_set = train_test_split(main_dataframe, train_size=0.8)
@@ -22,6 +23,7 @@ def MAE(R, N, threshold):
 
     # iterate through each user and each context
     for user_id in user_id_list:
+        print(user_id)
         for context in contexts:
             
             # calculate recommendations for each one
@@ -37,11 +39,9 @@ def MAE(R, N, threshold):
                         predicted_rating = recommendations[item_id]
                         true_rating = row['Rating']
 
-                        predicted_rating.append(predicted_rating)
+                        predicted_ratings.append(predicted_rating)
                         true_ratings.append(true_rating)
 
     error = mean_absolute_error(predicted_ratings, true_ratings)
-    
-    return error
 
-MAE(R=20, N=17, threshold=0.1)
+    return error
