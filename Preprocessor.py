@@ -10,9 +10,6 @@ song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False, delimiter
 
 def fetch_data():
 
-    processed_main_dataframe, user_id_list = preprocess()
-    item_id_list = get_item_id_list(processed_main_dataframe)
-
     return processed_main_dataframe, user_id_list, item_id_list
 
 
@@ -110,3 +107,7 @@ def generate_random_contexts():
     landscaped_main_dataframe.to_csv("dataset/in_car_music.csv")
 
     return landscaped_main_dataframe
+
+
+processed_main_dataframe, user_id_list = preprocess()
+item_id_list = get_item_id_list(processed_main_dataframe)

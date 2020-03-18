@@ -32,6 +32,16 @@ def get_user_ratings(user_id):
     return user_ratings
 
 
+# returns user's average rating for an item for thresholding
+def get_user_mean_rating(user_id):
+
+    user_ratings = get_user_ratings(user_id)
+    ratings_list = user_ratings['Rating']
+    user_mean_rating = ratings_list.mean()
+
+    return user_mean_rating
+
+
 # returns the rating user u gave to item i
 def get_item_rating(user_id, item_id, context):
 
