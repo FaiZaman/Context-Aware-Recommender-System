@@ -205,6 +205,24 @@ def compute_recommendations(user_id, ratings_dataframe, context, neighbourhood, 
     return predicted_ratings_dict
 
 
+# converts list of tuples of predicted ratings (item, rating) to a dictionary
+def convert_list_to_dict(predicted_ratings):
+
+    predicted_ratings_dict = dict(predicted_ratings)
+    return predicted_ratings_dict
+
+
+# sorts predicted ratings dict by item
+def sort_dict(predicted_ratings):
+
+    sorted_predicted_ratings = {}
+
+    for key in sorted(predicted_ratings.keys()):
+	    sorted_predicted_ratings[key] = predicted_ratings[key]
+
+    return sorted_predicted_ratings
+
+
 # remove recommendations with rating of 0 or NaN
 def filter_recommendations(r_predicted_ratings):
 
@@ -223,9 +241,12 @@ def get_r_best_recommendations(predicted_ratings_dict, R):
     c = Counter(predicted_ratings_dict)
     r_predicted_ratings = c.most_common(R)
     
+    # filtering and sorting
     filtered_r_predicted_ratings = filter_recommendations(r_predicted_ratings)
+    filtered_r_predicted_ratings = convert_list_to_dict(filtered_r_predicted_ratings)
+    sorted_predicted_ratings = sort_dict(filtered_r_predicted_ratings)
 
-    return filtered_r_predicted_ratings
+    return sorted_predicted_ratings
 
 
 # uses postfiltering to incorporate contexts into the recommendations

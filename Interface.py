@@ -82,7 +82,7 @@ def main_menu(user_id, context, R):
     if command == 'G':
         r_predicted_ratings, user_mean_rating =\
             get_recommendations(user_id, main_dataframe, context, R, N, threshold)
-            
+
         display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
         main_menu(user_id, context, R)
 
@@ -125,8 +125,9 @@ def display_recommendations(user_id, predicted_ratings, user_mean_rating):
     print("Your recommendations are:\n")
 
     # combine to display song titles and artists
-    recommendation_template = pd.DataFrame(predicted_ratings, columns=['ItemID', 'Predicted Rating'])
-    recommendations = pd.merge(song_dataframe, recommendation_template, on='ItemID', how='right')
+    predicted_ratings_data = list(predicted_ratings.items())
+    r_dataframe = pd.DataFrame(predicted_ratings_data, columns=['ItemID', 'Predicted Rating'])
+    recommendations = pd.merge(song_dataframe, r_dataframe, on='ItemID', how='right')
 
     # remove unnecessary data
     recommendations = recommendations.drop('imageurl', 1); 

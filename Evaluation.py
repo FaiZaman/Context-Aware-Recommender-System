@@ -17,8 +17,8 @@ def MAE(R, N, threshold):
     train_data = train_set.sort_values('UserID')
     test_data = test_set.sort_values('UserID')
 
-    true_ratings = []
     predicted_ratings = []
+    true_ratings = []
 
     # iterate through each user and each context
     for user_id in user_id_list:
@@ -31,11 +31,17 @@ def MAE(R, N, threshold):
             # compare training data's recommendation predicted ratings to true test set ratings
             for index, row in test_data.iterrows():
                 if row['UserID'] == str(user_id) and row['landscape'] == context:
-                    item_id = row['ItemID']
+                    
+                    item_id = int(row['ItemID'])
+                    if item_id in recommendations:
+                        predicted_rating = recommendations[item_id]
+                        true_rating = row['Rating']
 
-                    user_rating_tuple =\
-                        [user_rating for user_rating in recommendations if int(item_id) in user_rating]
-                    print("tuple:", user_rating_tuple)
+                        predicted_rating.append(predicted_rating)
+                        true_ratings.append(true_rating)
 
+    error = mean_absolute_error(predicted_ratings, true_ratings)
+    
+    return error
 
-MAE(R=10, N=17, threshold=0.1)
+MAE(R=20, N=17, threshold=0.1)
