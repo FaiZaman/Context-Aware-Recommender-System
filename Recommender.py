@@ -8,6 +8,26 @@ from Preprocessor import fetch_data
 main_dataframe, user_id_list, item_id_list = fetch_data()
 
 
+def get_recommendations(user_id, context, R, N, threshold):
+
+     # get cosine similarities between users
+    similarity_dict = compute_similarities(user_id)
+
+    # get user's neighbourhood of size N
+    neighbourhood = get_user_neighbourhood(similarity_dict, N)
+
+    # get all predicted ratings for this user's unrated items
+    predicted_ratings_dict = compute_recommendations(user_id, context, neighbourhood, threshold)
+
+    # get the r highest predicted ratings to display
+    r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
+
+    # gets the mean rating for thresholding and display recommendations
+    user_mean_rating = get_user_mean_rating(user_id)
+
+    return r_predicted_ratings, user_mean_rating
+
+
 # converts user's letter input to a word that can be searched for
 def convert_context(context):
 

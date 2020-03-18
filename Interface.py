@@ -6,7 +6,7 @@ from os import system
 from Preprocessor import fetch_data
 from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
                         get_user_neighbourhood, compute_recommendations, get_r_best_recommendations, \
-                        convert_context, get_user_mean_rating
+                        convert_context, get_user_mean_rating, get_recommendations
 
 warnings.filterwarnings("ignore", category=RuntimeWarning) 
 
@@ -79,7 +79,8 @@ def main_menu(user_id, context, R):
             print("Invalid command. Please try again.")
     
     if command == 'G':
-        get_recommendations(user_id, context, R)
+        r_predicted_ratings, user_mean_rating = get_recommendations(user_id, context, R, N, threshold)
+        display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
         main_menu(user_id, context, R)
 
     elif command == 'S':
@@ -138,25 +139,6 @@ def display_recommendations(user_id, predicted_ratings, user_mean_rating):
     recommendations = recommendations.reset_index(drop=True)
 
     print(recommendations, "\n")
-
-
-def get_recommendations(user_id, context, R):
-
-     # get cosine similarities between users
-    similarity_dict = compute_similarities(user_id)
-
-    # get user's neighbourhood of size N
-    neighbourhood = get_user_neighbourhood(similarity_dict, N)
-
-    # get all predicted ratings for this user's unrated items
-    predicted_ratings_dict = compute_recommendations(user_id, context, neighbourhood, threshold)
-
-    # get the r highest predicted ratings to display
-    r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
-
-    # gets the mean rating for thresholding and display recommendations
-    user_mean_rating = get_user_mean_rating(user_id)
-    display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
 
 
 # allows user to change settings based on their own preferences or due to device size/disability etc
