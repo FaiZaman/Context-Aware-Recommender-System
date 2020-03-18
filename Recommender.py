@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import math
 from scipy import spatial
 from collections import Counter
 from Preprocessor import fetch_data
@@ -7,22 +8,51 @@ from Preprocessor import fetch_data
 main_dataframe, user_id_list, item_id_list = fetch_data()
 
 
+# converts user's letter input to a word that can be searched for
+def convert_context(context):
+
+    if context == 'u':
+        context = 'urban'
+    elif context == 'm':
+        context = 'mountains'
+    elif context == 'cs':
+        context = 'countryside'
+    elif context == 'cl':
+        context = 'coastline'
+    
+    return context
+
+
 # returns the vector of a all specific user's ratings 
 def get_user_ratings(user_id):
 
-    user_dataframe = main_dataframe[main_dataframe['UserID'] == user_id]
+    user_dataframe = main_dataframe[main_dataframe['UserID'] == str(user_id)]
     user_ratings = user_dataframe[['ItemID', 'Rating', 'landscape']]
 
     return user_ratings
 
 
-# returns the rating user u gave to item i
-def get_item_rating(user_id, item_id):
+# returns user's average rating for an item for thresholding
+def get_user_mean_rating(user_id):
 
     user_ratings = get_user_ratings(user_id)
-    item_rating = user_ratings[user_ratings['ItemID'] == item_id]
+    ratings_list = user_ratings['Rating']
+    user_mean_rating = ratings_list.mean()
 
-    return item_rating
+    return user_mean_rating
+
+
+# returns the rating user u gave to item i
+def get_item_rating(user_id, item_id, context):
+
+    user_ratings = get_user_ratings(user_id)
+    item_rating = user_ratings[user_ratings['ItemID'] == str(item_id)]
+
+    if not item_rating.empty:
+        if item_rating['landscape'].iloc[0] == context:
+            return item_rating
+
+    return pd.DataFrame()
 
 
 # returns R items not rated by the user
@@ -106,9 +136,7 @@ def get_user_neighbourhood(similarity_dict, N):
 
 
 # calculate r recommendations for unrated items for a user
-def compute_recommendations(user_id, neighbourhood, threshold):
-
-    # TODO - check whether we need the specific context - currently done without
+def compute_recommendations(user_id, context, neighbourhood, threshold):
 
     unrated_items = get_unrated_items(user_id)
     predicted_ratings_dict = {}
@@ -127,9 +155,9 @@ def compute_recommendations(user_id, neighbourhood, threshold):
             similarity = user[1]
 
             # get rating for same item for current neighbour
-            neighbour_item_rating = get_item_rating(neighbour_id, item_id)
+            neighbour_item_rating = get_item_rating(neighbour_id, item_id, context)
 
-            if not neighbour_item_rating.empty:     #  if neighbour did rate item
+            if not neighbour_item_rating.empty:     #  if neighbour did rate item in specific context
                 
                 num_neighbours_rated += 1
                 neighbour_item_rating = neighbour_item_rating['Rating'].iloc[0]
@@ -156,14 +184,27 @@ def compute_recommendations(user_id, neighbourhood, threshold):
     return predicted_ratings_dict
 
 
+# remove recommendations with rating of 0 or NaN
+def filter_recommendations(r_predicted_ratings):
+
+    for (item_id, predicted_rating) in r_predicted_ratings:
+
+        if predicted_rating < 2 or math.isnan(predicted_rating):
+            r_predicted_ratings.remove((item_id, predicted_rating))
+
+    return r_predicted_ratings
+
+
 # returns the r items with highest predicted rating
 def get_r_best_recommendations(predicted_ratings_dict, R):
 
     # choose R most similar entries and return them
     c = Counter(predicted_ratings_dict)
     r_predicted_ratings = c.most_common(R)
+    
+    filtered_r_predicted_ratings = filter_recommendations(r_predicted_ratings)
 
-    return r_predicted_ratings
+    return filtered_r_predicted_ratings
 
 
 # uses postfiltering to incorporate contexts into the recommendations
@@ -173,4 +214,4 @@ def filter_pof(predicted_rating, num_neighbours_rated, N, threshold):
 
     if contextual_probability > threshold:
         return predicted_rating
-    return 0
+    return np.float64(0.0)
