@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import math
 import sys
 import warnings
 from os import system
@@ -85,10 +86,15 @@ def main_menu(user_id, context, R):
         r_predicted_ratings, user_mean_rating =\
             get_recommendations(user_id, main_dataframe, context, R, N, threshold)
 
+        # only return recommendations whose predicted rating is higher than user's average rating
+        filtered_r_predicted_ratings =\
+            filter_recommendations(r_predicted_ratings, user_mean_rating)
+
         display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
         main_menu(user_id, context, R)
 
     elif command == 'M':
+        print("This calculation will take a few minutes. Please be patient...")
         error = MAE(main_dataframe, R, N, threshold)
         print("The Mean Absolute Error of the Music Recommender System is " + str(error) + ".")
         main_menu(user_id, context, R)
@@ -150,6 +156,19 @@ def display_recommendations(user_id, predicted_ratings, user_mean_rating):
     recommendations = recommendations.reset_index(drop=True)
 
     print(recommendations, "\n")
+
+
+# remove recommendations with rating of 0 or NaN
+def filter_recommendations(predicted_ratings, user_mean_rating):
+
+    predicted_ratings_copy = predicted_ratings.copy()
+
+    for item_id, predicted_rating in predicted_ratings_copy.items():
+
+        if predicted_rating < user_mean_rating or math.isnan(predicted_rating):
+            del predicted_ratings[item_id]
+
+    return predicted_ratings
 
 
 # allows user to change settings based on their own preferences or due to device size/disability etc

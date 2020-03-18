@@ -26,10 +26,7 @@ def get_recommendations(user_id, ratings_dataframe, context, R, N, threshold):
     # gets the mean rating for thresholding and display recommendations
     user_mean_rating = get_user_mean_rating(user_id, ratings_dataframe)
 
-    # only return recommendations whose predicted rating is higher than user's average rating
-    filtered_r_predicted_ratings = filter_recommendations(r_predicted_ratings, user_mean_rating)
-
-    return filtered_r_predicted_ratings, user_mean_rating
+    return r_predicted_ratings, user_mean_rating
 
 
 # converts user's letter input to a word that can be searched for
@@ -217,19 +214,6 @@ def sort_dict(predicted_ratings):
 	    sorted_predicted_ratings[key] = predicted_ratings[key]
 
     return sorted_predicted_ratings
-
-
-# remove recommendations with rating of 0 or NaN
-def filter_recommendations(predicted_ratings, user_mean_rating):
-
-    predicted_ratings_copy = predicted_ratings.copy()
-
-    for item_id, predicted_rating in predicted_ratings_copy.items():
-
-        if predicted_rating < user_mean_rating or math.isnan(predicted_rating):
-            del predicted_ratings[item_id]
-
-    return predicted_ratings
 
 
 # returns the r items with highest predicted rating

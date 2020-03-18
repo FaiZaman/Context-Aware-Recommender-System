@@ -1,3 +1,4 @@
+import random as rand
 import warnings
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
@@ -45,3 +46,19 @@ def MAE(main_dataframe, R, N, threshold):
     error = mean_absolute_error(predicted_ratings, true_ratings)
 
     return error
+
+
+# chooses a random test user
+def select_test_user():
+
+    random_user_id = rand.choice(user_id_list)
+    return random_user_id
+
+
+# evaluates whether the RS accurately predicted whether the recommendations would be used
+def precision():
+
+    test_user_id = select_test_user()
+    print(test_user_id)
+    
+precision()
