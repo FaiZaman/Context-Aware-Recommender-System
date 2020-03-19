@@ -85,8 +85,8 @@ def precision_recall(main_dataframe, R, N, threshold, is_precision):
 
         # predict a set of items user will like/rate
         recommendations, mean = get_recommendations(test_user_id, train_data, context, R, N, threshold)
-        print(recommendations)
-        print(user_item_list)
+        #print(recommendations)
+        #print(user_item_list)
 
         # check test set for each recommendation
         if user_item_list != []:
@@ -107,14 +107,13 @@ def precision_recall(main_dataframe, R, N, threshold, is_precision):
                     false_negatives += 1
 
     if is_precision:
-        print(true_positives, false_positives)
+
         precision = calculate_precision(true_positives, false_positives)
         return precision
 
     else:
-        print(true_positives, false_negatives)
+        
         recall = calculate_recall(true_positives, false_negatives)
-        print(recall)
         return recall
 
 
@@ -130,6 +129,3 @@ def calculate_recall(true_positives, false_negatives):
 
     recall = true_positives / (true_positives + false_negatives)
     return recall
-
-
-precision_recall(dataframe, R=10, N=17, threshold=0.1, is_precision=False)

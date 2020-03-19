@@ -8,7 +8,7 @@ from Preprocessor import fetch_data
 from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
                         get_user_neighbourhood, compute_recommendations, get_r_best_recommendations, \
                         convert_context, get_user_mean_rating, get_recommendations
-from Evaluation import MAE
+from Evaluation import MAE, precision_recall
 
 warnings.filterwarnings("ignore", category=RuntimeWarning) 
 
@@ -69,7 +69,7 @@ def main_menu(user_id, context, R):
 
     print("Signed in as User " + str(user_id) + ".")
     print("Press G to generate your recommendations.")
-    print("Press M to calculate the mean absolute error of the system.")
+    print("Press E to enter evaluation mode.")
     print("Press S to configure the settings.")
     print("Press X to sign out of your account.")
     print("Press Q to quit the Music Recommender System.")
@@ -77,7 +77,7 @@ def main_menu(user_id, context, R):
     while True:
         command = str(input())
         command = command.upper()
-        if command == 'G' or command == 'M' or command == 'S' or command == 'X' or command == 'Q':
+        if command == 'G' or command == 'E' or command == 'S' or command == 'X' or command == 'Q':
             break;
         else:
             print("Invalid command. Please try again.")
@@ -93,11 +93,8 @@ def main_menu(user_id, context, R):
         display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
         main_menu(user_id, context, R)
 
-    elif command == 'M':
-        print("This calculation will take a few minutes. Please be patient...")
-        error = MAE(main_dataframe, R, N, threshold)
-        print("The Mean Absolute Error of the Music Recommender System is " + str(error) + ".")
-        main_menu(user_id, context, R)
+    elif command == 'E':
+        evaluate(user_id, context, R)
 
     elif command == 'S':
         context, R = configure_settings(user_id, context, R)
@@ -171,12 +168,46 @@ def filter_recommendations(predicted_ratings, user_mean_rating):
     return predicted_ratings
 
 
+# allow user to run one of the evaluation metrics
+def evaluate(user_id, context, R):
+
+    print("Press M to calculate the mean absolute error of the system.")
+    print("Press P to calculate the precision of the system.")
+    print("Press R to calculate the recall of the system.")
+    print("Press B to return to the main menu.")
+
+    while True:
+        command = str(input())
+        command = command.upper()
+        if command == 'M' or command == 'P' or command == 'R' or command == 'B':
+            break;
+        else:
+            print("Invalid command. Please try again.")
+
+    if command == 'M':
+        print("This calculation will take a few minutes. Please be patient...")
+        error = MAE(main_dataframe, R, N, threshold)
+        print("The Mean Absolute Error of the Music Recommender System is " + str(error) + ".")
+        main_menu(user_id, context, R)
+
+    elif command == 'P':
+        precision = precision_recall(main_dataframe, R, N, threshold, is_precision=True)
+        print("The precision of the system is " + str(precision) + ".")
+
+    elif command == 'R':
+        recall = precision_recall(main_dataframe, R, N, threshold, is_precision=False)
+        print("The recall of the system is " + str(recall))
+
+    else:
+        main_menu(user_id, context, R)
+    
+
 # allows user to change settings based on their own preferences or due to device size/disability etc
 def configure_settings(user_id, context, R):
 
     print("Press R to change the number of recommendations.")
     print("Press L to change the landscape.")
-    print("Press B to go back to the main menu.")
+    print("Press B to return to the main menu.")
 
     while True:
         command = str(input())
