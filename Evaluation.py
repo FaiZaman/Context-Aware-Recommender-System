@@ -1,23 +1,21 @@
 import random as rand
+import pandas as pd
 import warnings
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from Preprocessor import fetch_data
-from Recommender import get_recommendations
+from Recommender import get_recommendations, get_user_ratings
 
 warnings.filterwarnings("ignore", category=RuntimeWarning) 
 
 dataframe, user_id_list, item_id_list = fetch_data()
+contexts = ['urban', 'mountains', 'countryside', 'coastline']
+
 
 # calculates the mean absolute error between the recommendations and actual ratings
 def MAE(main_dataframe, R, N, threshold):
 
-    contexts = ['urban', 'mountains', 'countryside', 'coastline']
-
-    # split data into train and test sets and sort
-    train_set, test_set = train_test_split(main_dataframe, train_size=0.8)
-    train_data = train_set.sort_values('UserID')
-    test_data = test_set.sort_values('UserID')
+    train_data, test_data = split_data(main_dataframe)
 
     predicted_ratings = []
     true_ratings = []
@@ -48,6 +46,18 @@ def MAE(main_dataframe, R, N, threshold):
     return error
 
 
+# splits the data into training and testing sets
+def split_data(main_dataframe):
+
+    train_test_size = 0.8   # ratio of data to be training data
+
+    train_set, test_set = train_test_split(main_dataframe, train_size=train_test_size)
+    train_data = train_set.sort_values('UserID')
+    test_data = test_set.sort_values('UserID')
+    
+    return train_data, test_data
+
+
 # chooses a random test user
 def select_test_user():
 
@@ -56,9 +66,30 @@ def select_test_user():
 
 
 # evaluates whether the RS accurately predicted whether the recommendations would be used
-def precision():
+def precision(main_dataframe, R, N, threshold):
 
     test_user_id = select_test_user()
-    print(test_user_id)
+    train_data, test_data = split_data(main_dataframe)
+
+    # for comparison
+    test_user_ratings = get_user_ratings(test_user_id, test_data)
+    user_item_list = test_user_ratings['ItemID'].tolist()
+
+    for context in contexts:
+        
+        # predict a set of items user will like/rate
+        recommendations, mean = get_recommendations(test_user_id, train_data, context, R, N, threshold)
+        print(recommendations)
+        print(user_item_list)
+
+        # check test set for each recommendation
+        if user_item_list != []:
+            
+            for item_id, predicted_raing in recommendations.items():
+                
+                if str(item_id) in user_item_list:  # true positive
+                    print(item_id, "True Positive")
+                elif str(item_id) not in user_item_list:
+                    print(item_id, "False Positive")
     
-precision()
+precision(dataframe, R=10, N=17, threshold=0.1)
