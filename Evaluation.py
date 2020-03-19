@@ -66,7 +66,7 @@ def select_test_user():
 
 
 # evaluates whether the RS accurately predicted whether the recommendations would be used
-def precision(main_dataframe, R, N, threshold):
+def precision_recall(main_dataframe, R, N, threshold, is_precision):
 
     test_user_id = select_test_user()
     train_data, test_data = split_data(main_dataframe)
@@ -74,9 +74,15 @@ def precision(main_dataframe, R, N, threshold):
     # for comparison
     test_user_ratings = get_user_ratings(test_user_id, test_data)
     user_item_list = test_user_ratings['ItemID'].tolist()
+    user_item_list.sort()
+
+    # initialises
+    true_positives = 0
+    false_positives = 0
+    false_negatives = 0
 
     for context in contexts:
-        
+
         # predict a set of items user will like/rate
         recommendations, mean = get_recommendations(test_user_id, train_data, context, R, N, threshold)
         print(recommendations)
@@ -89,7 +95,41 @@ def precision(main_dataframe, R, N, threshold):
                 
                 if str(item_id) in user_item_list:  # true positive
                     print(item_id, "True Positive")
-                elif str(item_id) not in user_item_list:
+                    true_positives += 1
+
+                else:   # false positive
                     print(item_id, "False Positive")
-    
-precision(dataframe, R=10, N=17, threshold=0.1)
+                    false_positives += 1
+            
+            for item_id in user_item_list:
+
+                if int(item_id) not in recommendations:
+                    false_negatives += 1
+
+    if is_precision:
+        print(true_positives, false_positives)
+        precision = calculate_precision(true_positives, false_positives)
+        return precision
+
+    else:
+        print(true_positives, false_negatives)
+        recall = calculate_recall(true_positives, false_negatives)
+        print(recall)
+        return recall
+
+
+# returns precision TP/TP + FP
+def calculate_precision(true_positives, false_positives):
+
+    precision = true_positives / (true_positives + false_positives)
+    return precision
+
+
+# returns recall TP/TP + FN
+def calculate_recall(true_positives, false_negatives):
+
+    recall = true_positives / (true_positives + false_negatives)
+    return recall
+
+
+precision_recall(dataframe, R=10, N=17, threshold=0.1, is_precision=False)
