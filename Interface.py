@@ -45,7 +45,7 @@ def sign_in():
 # gets user's context explicitly
 def set_context():
 
-    print("Please enter the landscape, or press v to view the corresponding letters:")
+    print("Please enter the landscape (press v to view the corresponding letters):")
     while True:
         context = str(input())
         context = context.lower()

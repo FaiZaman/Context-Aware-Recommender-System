@@ -68,13 +68,18 @@ def select_test_user():
 # evaluates whether the RS accurately predicted whether the recommendations would be used
 def precision_recall(main_dataframe, R, N, threshold, is_precision):
 
-    test_user_id = select_test_user()
     train_data, test_data = split_data(main_dataframe)
+    user_item_list = []
 
-    # for comparison
-    test_user_ratings = get_user_ratings(test_user_id, test_data)
-    user_item_list = test_user_ratings['ItemID'].tolist()
-    user_item_list.sort()
+    while user_item_list == []: # at least one rating in test set by test user
+
+        test_user_id = select_test_user()
+        print(test_user_id)
+        test_user_ratings = get_user_ratings(test_user_id, test_data)
+        user_item_list = test_user_ratings['ItemID'].tolist()
+        user_item_list.sort()
+    
+        print(user_item_list)
 
     # initialises
     true_positives = 0
@@ -85,26 +90,19 @@ def precision_recall(main_dataframe, R, N, threshold, is_precision):
 
         # predict a set of items user will like/rate
         recommendations, mean = get_recommendations(test_user_id, train_data, context, R, N, threshold)
-        #print(recommendations)
-        #print(user_item_list)
-
-        # check test set for each recommendation
-        if user_item_list != []:
-            
-            for item_id, predicted_raing in recommendations.items():
+        print(recommendations)
+        # check test set for each recommendation    
+        for item_id, predicted_rating in recommendations.items():
+            if str(item_id) in user_item_list:
                 
-                if str(item_id) in user_item_list:  # true positive
-                    print(item_id, "True Positive")
-                    true_positives += 1
+                predicted_binary_rating = convert_rating_to_binary(mean, predicted_rating)
+                true_rating_row = test_user_ratings[test_user_ratings['ItemID'] == str(item_id)]
+                true_rating = true_rating_row['Rating'].iloc[0]
 
-                else:   # false positive
-                    print(item_id, "False Positive")
-                    false_positives += 1
-            
-            for item_id in user_item_list:
-
-                if int(item_id) not in recommendations:
-                    false_negatives += 1
+                true_binary_rating = convert_rating_to_binary(mean, true_rating)
+                true_positives, false_positives, false_negatives =\
+                    assign_outcomes(predicted_binary_rating, true_binary_rating,\
+                                    true_positives, false_positives, false_negatives)
 
     if is_precision:
 
@@ -129,3 +127,25 @@ def calculate_recall(true_positives, false_negatives):
 
     recall = true_positives / (true_positives + false_negatives)
     return recall
+
+
+# converts 1-5 rating to positive or negative for precision and recall
+def convert_rating_to_binary(user_mean_rating, rating):
+
+    if rating < user_mean_rating:
+        return 0
+    else:
+        return 1
+
+
+# assign true positives, false positives, and false negatives based on predicted & true binary ratings
+def assign_outcomes(predicted_binary_rating, true_binary_rating, TPs, FPs, FNs):
+
+    if predicted_binary_rating == 1 and true_binary_rating == 1:
+        TPs += 1
+    elif predicted_binary_rating == 0 and true_binary_rating == 1:
+        FPs += 1
+    elif predicted_binary_rating == 1 and true_binary_rating == 0:
+        FNs += 1
+    
+    return TPs, FPs, FNs

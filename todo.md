@@ -1,7 +1,3 @@
-# Low rated recommendations
-
-Get user's average rating and use as a threshold for filtering out low predicted ratings
-
 # Number of recommendations
 
 Research the best number and reference
@@ -14,4 +10,8 @@ Possibly average multiple ratings for same item
 
 # Evaluation
 
-Implement MAE and two others
+Fix precision and recall
+
+# Paper
+
+Perhaps discuss how data was filtered and random contexts generated
