@@ -4,13 +4,14 @@ import math
 import sys
 import warnings
 from os import system
+from device_detector import DeviceDetector
 from Preprocessor import fetch_data
 from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
                         get_user_neighbourhood, compute_recommendations, get_r_best_recommendations, \
                         convert_context, get_user_mean_rating, get_recommendations
 from Evaluation import MAE, precision_recall
 
-warnings.filterwarnings("ignore", category=RuntimeWarning) 
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 # reading in data
 song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False,\
@@ -18,7 +19,6 @@ song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False,\
 contexts = ['u', 'urban', 'm', 'mountains', 'cs', 'countryside', 'cl', 'coastline']
 
 N = 17  # neighbourhood size
-R = 5  # number of recommendations to output
 threshold = 0.1     # threshold for Filter PoF
 
 main_dataframe, user_id_list, item_id_list = fetch_data()
@@ -83,7 +83,7 @@ def main_menu(user_id, context, R):
             print("Invalid command. Please try again.")
     
     if command == 'G':
-        r_predicted_ratings, user_mean_rating =\
+        original_recommendations, r_predicted_ratings, user_mean_rating =\
             get_recommendations(user_id, main_dataframe, context, R, N, threshold)
 
         # only return recommendations whose predicted rating is higher than user's average rating
@@ -131,7 +131,6 @@ def validate_user(user_id):
 # display specificed user's personalised recommendations
 def display_recommendations(user_id, predicted_ratings, user_mean_rating):
 
-    print("Average rating", user_mean_rating)
     print("Your recommendations are:\n")
 
     # combine to display song titles and artists
@@ -188,15 +187,17 @@ def evaluate(user_id, context, R):
         print("This calculation will take a few minutes. Please be patient...")
         error = MAE(main_dataframe, R, N, threshold)
         print("The Mean Absolute Error of the Music Recommender System is " + str(error) + ".")
-        main_menu(user_id, context, R)
+        evaluate(user_id, context, R)
 
     elif command == 'P':
         precision = precision_recall(main_dataframe, R, N, threshold, is_precision=True)
         print("The precision of the system is " + str(precision) + ".")
+        evaluate(user_id, context, R)
 
     elif command == 'R':
         recall = precision_recall(main_dataframe, R, N, threshold, is_precision=False)
         print("The recall of the system is " + str(recall))
+        evaluate(user_id, context, R)
 
     else:
         main_menu(user_id, context, R)
@@ -243,6 +244,17 @@ def set_num_recommendations(R):
     return R
 
 
+def get_device_type():
+
+    ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"\
+     + "(KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
+
+    device = DeviceDetector(ua).parse()
+    device_type = device.device_type()
+
+    return device_type
+
+
 # basic process to call to start program
 def main():
 
@@ -250,6 +262,15 @@ def main():
     print("===================== Music Recommender System =====================")
     user_id = sign_in()
     print("Welcome, User " + str(user_id) + "!\n")
+
+    device_type = get_device_type()
+    R = 0   # number of recommendations to output
+
+    if device_type == 'desktop':
+        R = 5
+    elif device_type == 'smartphone':
+        R = 3
+
     context = set_context()
     main_menu(user_id, context, R)
 

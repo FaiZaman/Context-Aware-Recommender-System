@@ -17,16 +17,16 @@ def get_recommendations(user_id, ratings_dataframe, context, R, N, threshold):
     neighbourhood = get_user_neighbourhood(similarity_dict, N)
 
     # get all predicted ratings for this user's unrated items
-    predicted_ratings_dict =\
+    original_predicted_ratings =\
         compute_recommendations(user_id, ratings_dataframe, context, neighbourhood, threshold)
 
     # get the r highest predicted ratings to display
-    r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
+    r_predicted_ratings = get_r_best_recommendations(original_predicted_ratings, R)
 
     # gets the mean rating for thresholding and display recommendations
     user_mean_rating = get_user_mean_rating(user_id, ratings_dataframe)
 
-    return r_predicted_ratings, user_mean_rating
+    return original_predicted_ratings, r_predicted_ratings, user_mean_rating
 
 
 # converts user's letter input to a word that can be searched for

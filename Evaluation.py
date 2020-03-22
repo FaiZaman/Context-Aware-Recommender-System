@@ -1,5 +1,6 @@
 import random as rand
 import pandas as pd
+import math
 import warnings
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
@@ -26,8 +27,9 @@ def MAE(main_dataframe, R, N, threshold):
         for context in contexts:
             
             # calculate recommendations for each one
-            recommendations, user_mean_rating =\
+            original_recommendations, filtered_recommendations, user_mean_rating =\
                 get_recommendations(user_id, train_data, context, R, N, threshold)
+            recommendations = filter_nan(original_recommendations)
 
             # compare training data's recommendation predicted ratings to true test set ratings
             for index, row in test_data.iterrows():
@@ -89,12 +91,14 @@ def precision_recall(main_dataframe, R, N, threshold, is_precision):
     for context in contexts:
 
         # predict a set of items user will like/rate
-        recommendations, mean = get_recommendations(test_user_id, train_data, context, R, N, threshold)
-        print(recommendations)
+        original_recommendations, filtered_recommendations, mean =\
+            get_recommendations(test_user_id, train_data, context, R, N, threshold)
+        recommendations = filter_nan(original_recommendations)
+
         # check test set for each recommendation    
         for item_id, predicted_rating in recommendations.items():
             if str(item_id) in user_item_list:
-                
+
                 predicted_binary_rating = convert_rating_to_binary(mean, predicted_rating)
                 true_rating_row = test_user_ratings[test_user_ratings['ItemID'] == str(item_id)]
                 true_rating = true_rating_row['Rating'].iloc[0]
@@ -149,3 +153,13 @@ def assign_outcomes(predicted_binary_rating, true_binary_rating, TPs, FPs, FNs):
         FNs += 1
     
     return TPs, FPs, FNs
+
+
+def filter_nan(recommendations):
+
+    recommendations_copy = recommendations.copy()
+    for item_id, predicted_rating in recommendations_copy.items():
+        if math.isnan(predicted_rating):
+            del recommendations[item_id]
+
+    return recommendations
