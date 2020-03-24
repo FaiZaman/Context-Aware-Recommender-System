@@ -23,7 +23,6 @@ def MAE(main_dataframe, R, N, threshold):
 
     # iterate through each user and each context
     for user_id in user_id_list:
-        print(user_id)
         for context in contexts:
             
             # calculate recommendations for each one
@@ -76,13 +75,10 @@ def precision_recall(main_dataframe, R, N, threshold, is_precision):
     while user_item_list == []: # at least one rating in test set by test user
 
         test_user_id = select_test_user()
-        print(test_user_id)
         test_user_ratings = get_user_ratings(test_user_id, test_data)
         user_item_list = test_user_ratings['ItemID'].tolist()
         user_item_list.sort()
     
-        print(user_item_list)
-
     # initialises
     true_positives = 0
     false_positives = 0
@@ -122,6 +118,8 @@ def precision_recall(main_dataframe, R, N, threshold, is_precision):
 # returns precision TP/TP + FP
 def calculate_precision(true_positives, false_positives):
 
+    if true_positives == 0 and false_positives == 0:
+        return 0
     precision = true_positives / (true_positives + false_positives)
     return precision
 
@@ -129,6 +127,8 @@ def calculate_precision(true_positives, false_positives):
 # returns recall TP/TP + FN
 def calculate_recall(true_positives, false_negatives):
 
+    if true_positives == 0 and false_negatives == 0:
+        return 0
     recall = true_positives / (true_positives + false_negatives)
     return recall
 
@@ -147,9 +147,9 @@ def assign_outcomes(predicted_binary_rating, true_binary_rating, TPs, FPs, FNs):
 
     if predicted_binary_rating == 1 and true_binary_rating == 1:
         TPs += 1
-    elif predicted_binary_rating == 0 and true_binary_rating == 1:
-        FPs += 1
     elif predicted_binary_rating == 1 and true_binary_rating == 0:
+        FPs += 1
+    elif predicted_binary_rating == 0 and true_binary_rating == 1:
         FNs += 1
     
     return TPs, FPs, FNs

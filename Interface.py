@@ -90,7 +90,7 @@ def main_menu(user_id, context, R):
         filtered_r_predicted_ratings =\
             filter_recommendations(r_predicted_ratings, user_mean_rating)
 
-        display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
+        display_recommendations(user_id, filtered_r_predicted_ratings, user_mean_rating)
         main_menu(user_id, context, R)
 
     elif command == 'E':
@@ -138,23 +138,17 @@ def display_recommendations(user_id, predicted_ratings, user_mean_rating):
     r_dataframe = pd.DataFrame(predicted_ratings_data, columns=['ItemID', 'Predicted Rating'])
     recommendations = pd.merge(song_dataframe, r_dataframe, on='ItemID', how='right')
 
-    # remove unnecessary data
-    recommendations = recommendations.drop('imageurl', 1); 
-    recommendations = recommendations.drop('description', 1)
-    recommendations = recommendations.drop('mp3url', 1); 
-    recommendations = recommendations.drop('album', 1)
-    recommendations = recommendations.drop('category_id', 1)
-
     # reorder columns and sort from most to least recommended
     recommendations = recommendations[['ItemID', 'title', 'artist', 'Predicted Rating']]
     recommendations = recommendations.rename(columns={"title": "Song Title", "artist": "Artist"})
     recommendations = recommendations.sort_values(by=['Predicted Rating'], ascending=False)
+    recommendations = recommendations.drop('Predicted Rating', 1)
     recommendations = recommendations.reset_index(drop=True)
 
     print(recommendations, "\n")
 
 
-# remove recommendations with rating of 0 or NaN
+# remove recommendations with rating of 0 or NaN and remove predicted rating column
 def filter_recommendations(predicted_ratings, user_mean_rating):
 
     predicted_ratings_copy = predicted_ratings.copy()
@@ -163,7 +157,9 @@ def filter_recommendations(predicted_ratings, user_mean_rating):
 
         if predicted_rating < user_mean_rating or math.isnan(predicted_rating):
             del predicted_ratings[item_id]
-
+    
+    if not(predicted_ratings) or len(predicted_ratings) < 2:
+        return predicted_ratings_copy
     return predicted_ratings
 
 
@@ -190,11 +186,13 @@ def evaluate(user_id, context, R):
         evaluate(user_id, context, R)
 
     elif command == 'P':
+        print("This calculation will take a few seconds. Please be patient...")
         precision = precision_recall(main_dataframe, R, N, threshold, is_precision=True)
         print("The precision of the system is " + str(precision) + ".")
         evaluate(user_id, context, R)
 
     elif command == 'R':
+        print("This calculation will take a few seconds. Please be patient...")
         recall = precision_recall(main_dataframe, R, N, threshold, is_precision=False)
         print("The recall of the system is " + str(recall))
         evaluate(user_id, context, R)
