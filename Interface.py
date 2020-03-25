@@ -1,21 +1,24 @@
 import pandas as pd
 import numpy as np
+import math
 import sys
 import warnings
 from os import system
+from device_detector import DeviceDetector
 from Preprocessor import fetch_data
 from Recommender import get_same_rated_items, compute_similarities, get_user_ratings, \
                         get_user_neighbourhood, compute_recommendations, get_r_best_recommendations, \
-                        convert_context, get_user_mean_rating
+                        convert_context, get_user_mean_rating, get_recommendations
+from Evaluation import MAE, precision_recall
 
-warnings.filterwarnings("ignore", category=RuntimeWarning) 
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 # reading in data
-song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False, delimiter=",", encoding="utf-8-sig")
+song_dataframe = pd.read_csv("dataset/song_data.csv", index_col=False,\
+                                                     delimiter=",", encoding="utf-8-sig")
 contexts = ['u', 'urban', 'm', 'mountains', 'cs', 'countryside', 'cl', 'coastline']
 
 N = 17  # neighbourhood size
-R = 5  # number of recommendations to output
 threshold = 0.1     # threshold for Filter PoF
 
 main_dataframe, user_id_list, item_id_list = fetch_data()
@@ -42,7 +45,7 @@ def sign_in():
 # gets user's context explicitly
 def set_context():
 
-    print("Please enter the landscape, or press v to view the corresponding letters:")
+    print("Please enter the landscape (press v to view the corresponding letters):")
     while True:
         context = str(input())
         context = context.lower()
@@ -66,6 +69,7 @@ def main_menu(user_id, context, R):
 
     print("Signed in as User " + str(user_id) + ".")
     print("Press G to generate your recommendations.")
+    print("Press E to enter evaluation mode.")
     print("Press S to configure the settings.")
     print("Press X to sign out of your account.")
     print("Press Q to quit the Music Recommender System.")
@@ -73,14 +77,24 @@ def main_menu(user_id, context, R):
     while True:
         command = str(input())
         command = command.upper()
-        if command == 'G' or command == 'S' or command == 'X' or command == 'Q':
+        if command == 'G' or command == 'E' or command == 'S' or command == 'X' or command == 'Q':
             break;
         else:
             print("Invalid command. Please try again.")
     
     if command == 'G':
-        get_recommendations(user_id, context, R)
+        original_recommendations, r_predicted_ratings, user_mean_rating =\
+            get_recommendations(user_id, main_dataframe, context, R, N, threshold)
+
+        # only return recommendations whose predicted rating is higher than user's average rating
+        filtered_r_predicted_ratings =\
+            filter_recommendations(r_predicted_ratings, user_mean_rating)
+
+        display_recommendations(user_id, filtered_r_predicted_ratings, user_mean_rating)
         main_menu(user_id, context, R)
+
+    elif command == 'E':
+        evaluate(user_id, context, R)
 
     elif command == 'S':
         context, R = configure_settings(user_id, context, R)
@@ -117,54 +131,82 @@ def validate_user(user_id):
 # display specificed user's personalised recommendations
 def display_recommendations(user_id, predicted_ratings, user_mean_rating):
 
-    print("Average rating", user_mean_rating)
     print("Your recommendations are:\n")
 
     # combine to display song titles and artists
-    recommendation_template = pd.DataFrame(predicted_ratings, columns=['ItemID', 'Predicted Rating'])
-    recommendations = pd.merge(song_dataframe, recommendation_template, on='ItemID', how='right')
-
-    # remove unnecessary data
-    recommendations = recommendations.drop('imageurl', 1); 
-    recommendations = recommendations.drop('description', 1)
-    recommendations = recommendations.drop('mp3url', 1); 
-    recommendations = recommendations.drop('album', 1)
-    recommendations = recommendations.drop('category_id', 1)
+    predicted_ratings_data = list(predicted_ratings.items())
+    r_dataframe = pd.DataFrame(predicted_ratings_data, columns=['ItemID', 'Predicted Rating'])
+    recommendations = pd.merge(song_dataframe, r_dataframe, on='ItemID', how='right')
 
     # reorder columns and sort from most to least recommended
     recommendations = recommendations[['ItemID', 'title', 'artist', 'Predicted Rating']]
     recommendations = recommendations.rename(columns={"title": "Song Title", "artist": "Artist"})
     recommendations = recommendations.sort_values(by=['Predicted Rating'], ascending=False)
+    recommendations = recommendations.drop('Predicted Rating', 1)
     recommendations = recommendations.reset_index(drop=True)
 
     print(recommendations, "\n")
 
 
-def get_recommendations(user_id, context, R):
+# remove recommendations with rating of 0 or NaN and remove predicted rating column
+def filter_recommendations(predicted_ratings, user_mean_rating):
 
-     # get cosine similarities between users
-    similarity_dict = compute_similarities(user_id)
+    predicted_ratings_copy = predicted_ratings.copy()
 
-    # get user's neighbourhood of size N
-    neighbourhood = get_user_neighbourhood(similarity_dict, N)
+    for item_id, predicted_rating in predicted_ratings_copy.items():
 
-    # get all predicted ratings for this user's unrated items
-    predicted_ratings_dict = compute_recommendations(user_id, context, neighbourhood, threshold)
+        if predicted_rating < user_mean_rating or math.isnan(predicted_rating):
+            del predicted_ratings[item_id]
+    
+    if not(predicted_ratings) or len(predicted_ratings) < 2:
+        return predicted_ratings_copy
+    return predicted_ratings
 
-    # get the r highest predicted ratings to display
-    r_predicted_ratings = get_r_best_recommendations(predicted_ratings_dict, R)
 
-    # gets the mean rating for thresholding and display recommendations
-    user_mean_rating = get_user_mean_rating(user_id)
-    display_recommendations(user_id, r_predicted_ratings, user_mean_rating)
+# allow user to run one of the evaluation metrics
+def evaluate(user_id, context, R):
 
+    print("Press M to calculate the mean absolute error of the system.")
+    print("Press P to calculate the precision of the system.")
+    print("Press R to calculate the recall of the system.")
+    print("Press B to return to the main menu.")
+
+    while True:
+        command = str(input())
+        command = command.upper()
+        if command == 'M' or command == 'P' or command == 'R' or command == 'B':
+            break;
+        else:
+            print("Invalid command. Please try again.")
+
+    if command == 'M':
+        print("This calculation will take a few minutes. Please be patient...")
+        error = MAE(main_dataframe, R, N, threshold)
+        print("The Mean Absolute Error of the Music Recommender System is " + str(error) + ".")
+        evaluate(user_id, context, R)
+
+    elif command == 'P':
+        print("This calculation will take a few seconds. Please be patient...")
+        precision = precision_recall(main_dataframe, R, N, threshold, is_precision=True)
+        print("The precision of the system is " + str(precision) + ".")
+        evaluate(user_id, context, R)
+
+    elif command == 'R':
+        print("This calculation will take a few seconds. Please be patient...")
+        recall = precision_recall(main_dataframe, R, N, threshold, is_precision=False)
+        print("The recall of the system is " + str(recall))
+        evaluate(user_id, context, R)
+
+    else:
+        main_menu(user_id, context, R)
+    
 
 # allows user to change settings based on their own preferences or due to device size/disability etc
 def configure_settings(user_id, context, R):
 
     print("Press R to change the number of recommendations.")
     print("Press L to change the landscape.")
-    print("Press B to go back to the main menu.")
+    print("Press B to return to the main menu.")
 
     while True:
         command = str(input())
@@ -200,6 +242,17 @@ def set_num_recommendations(R):
     return R
 
 
+def get_device_type():
+
+    ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"\
+     + "(KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
+
+    device = DeviceDetector(ua).parse()
+    device_type = device.device_type()
+
+    return device_type
+
+
 # basic process to call to start program
 def main():
 
@@ -207,6 +260,15 @@ def main():
     print("===================== Music Recommender System =====================")
     user_id = sign_in()
     print("Welcome, User " + str(user_id) + "!\n")
+
+    device_type = get_device_type()
+    R = 0   # number of recommendations to output
+
+    if device_type == 'desktop':
+        R = 5
+    elif device_type == 'smartphone':
+        R = 3
+
     context = set_context()
     main_menu(user_id, context, R)
 
